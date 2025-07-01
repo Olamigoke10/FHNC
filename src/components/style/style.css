@@ -1,0 +1,6 @@
+.image-shadow {
+  -webkit-mask-image: url('yourimage.png');
+  mask-image: url('yourimage.png');
+  mask-size: cover;
+  filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.3));
+}

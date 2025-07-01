@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.image-shadow {
+  -webkit-mask-image: url('assets/images/Homepage.png');
+  mask-image: url('assets/images/Homepage.png');
+  mask-size: cover;
+  filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.3));
+}
