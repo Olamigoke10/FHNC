@@ -13,14 +13,14 @@ const Navbar = () => {
       <div className="flex items-center justify-between px-4 py-4 h-36">
         {/* Header */}
         <div className="w-40">
-          <Link to="/">
+          <a href="#home">
             <img src={logo} alt="Logo" className="w-full" />
-          </Link>
+          </a>
         </div>
 
         {/* Mobile toggle */}
         <div className="md:hidden">
-          <button onClick={()=> setIsMobileOpen(!isMobileOpen)}>
+          <button onClick={() => setIsMobileOpen(!isMobileOpen)}>
             {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -29,15 +29,14 @@ const Navbar = () => {
         <nav className="hidden md:flex">
           <ul className="flex gap-x-6 text-sm text-gray-700 font-medium justify-center items-center">
             <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
-              <Link to="/">Home</Link>
+              <a href="#home">Home</a>
             </li>
 
             <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
-              <Link to="/about">About Us</Link>
+              <a href="#about">About Us</a>
             </li>
 
             {/* Dropdown */}
-
             <li
               className="relative cursor-pointer"
               onMouseEnter={() => setIsOpen(true)}
@@ -55,23 +54,21 @@ const Navbar = () => {
 
               {isOpen && (
                 <ul className="absolute left-0 top-5 bg-white border border-gray-300 shadow-md rounded w-48 z-10 p-5">
-                  {/* <div className="relative"> */}
-                    <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm gap-y-2">
-                      <Link to="/programs" className="px-2">
-                        TrainingPrograms
-                      </Link>
-                    </li>
-                    <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm text-start">
-                      <Link to="/leadership" className="px-2">
-                        IndigenousLeadership
-                      </Link>
-                    </li>
-                    <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm">
-                      <Link to="/partnerships" className="px-2">
-                        Partnerships
-                      </Link>
-                    </li>
-                  {/* </div> */}
+                  <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm gap-y-2">
+                    <a href="#programs" className="px-2">
+                      TrainingPrograms
+                    </a>
+                  </li>
+                  <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm text-start">
+                    <a href="#leadership" className="px-2">
+                      IndigenousLeadership
+                    </a>
+                  </li>
+                  <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm">
+                    <a href="#partnerships" className="px-2">
+                      Partnerships
+                    </a>
+                  </li>
                 </ul>
               )}
             </li>
@@ -80,7 +77,7 @@ const Navbar = () => {
               <Link to="/register">Registration</Link>
             </li>
             <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
-              <Link to="/contact">Contact</Link>
+              <a href="#contact">Contact</a>
             </li>
           </ul>
         </nav>
@@ -88,13 +85,13 @@ const Navbar = () => {
 
       {isMobileOpen && (
         <div className="md:hidden flex flex-col px-4 space-y-3 pb-4 gap-y-2 text-sm font-medium text-gray-700 transition-all duration-300">
-          <Link to="/" onClick={() => setIsMobileOpen(false)}>
+          <a href="#home" onClick={() => setIsMobileOpen(false)}>
             Home
-          </Link>
+          </a>
 
-          <Link to="/about" onClick={() => setIsMobileOpen(false)}>
+          <a href="#about" onClick={() => setIsMobileOpen(false)}>
             About us
-          </Link>
+          </a>
 
           {/* Mobile Dropdown */}
           <div
@@ -112,44 +109,43 @@ const Navbar = () => {
 
           {isMobileDropdown && (
             <ul className="mt-2 space-y-2 bg-white border rounded shadow-md p-4 transition-all ease-in-out duration-300">
-                <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm gap-y-2">
-                  <Link
-                    to="/programs"
-                    className="px-2"
-                    onClick={() => setIsMobileOpen(false)}
-                  >
-                    TrainingPrograms
-                  </Link>
-                </li>
-                <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm text-start">
-                  <Link
-                    to="/leadership"
-                    className="px-2"
-                    onClick={() => setIsMobileOpen(false)}
-                  >
-                    IndigenousLeadership
-                  </Link>
-                </li>
-                <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm">
-                  <Link
-                    to="/partnerships"
-                    onClick={() => setIsMobileOpen(false)}
-                    className="px-2"
-                  >
-                    Partnerships
-                  </Link>
-                </li>
+              <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm gap-y-2">
+                <a
+                  href="#programs"
+                  className="px-2"
+                  onClick={() => setIsMobileOpen(false)}
+                >
+                  TrainingPrograms
+                </a>
+              </li>
+              <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm text-start">
+                <a
+                  href="#leadership"
+                  className="px-2"
+                  onClick={() => setIsMobileOpen(false)}
+                >
+                  IndigenousLeadership
+                </a>
+              </li>
+              <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm">
+                <a
+                  href="#partnerships"
+                  onClick={() => setIsMobileOpen(false)}
+                  className="px-2"
+                >
+                  Partnerships
+                </a>
+              </li>
             </ul>
           )}
 
-          
-                <Link to="/register" onClick={() => setIsMobileOpen(false)}>
-                  Registration
-                </Link>
-             
-                <Link to="/contact" onClick={() => setIsMobileOpen(false)}>
-                  Contact
-                </Link>
+          <Link to="/register" onClick={() => setIsMobileOpen(false)}>
+            Registration
+          </Link>
+
+          <a href="#contact" onClick={() => setIsMobileOpen(false)}>
+            Contact
+          </a>
         </div>
       )}
     </header>

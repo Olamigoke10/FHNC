@@ -9,7 +9,7 @@ const Home = () => {
 
         {/* Text content */}
         <div className="md:w-1/2 text-center md:text-left space-y-4">
-          <h3 className="text-2xl md:text-4xl font-bold text-gray-800">
+          <h3 className="text-2xl md:text-4xl font-bold text-blue-800">
             Indigenous-Led Driver Training Excellence in Alberta
           </h3>
           <p className="text-gray-600 leading-relaxed">

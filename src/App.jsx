@@ -15,12 +15,21 @@ function App() {
     <div className='flex flex-col main-h-screen'>
       <Navbar />
       <Routes>
-        <Route  path="/" element={<Home />} />
-        <Route  path="/about" element={<About />} />
-        <Route  path="/programs" element={<Programs />} />
-        <Route  path="/leadership" element={<Leadership />} />
-        <Route  path="/partnerships" element={<Partnership />} />
-        <Route  path="/register" element={<Register />} />
+
+        <Route  path="/"
+        
+        element={
+        <>
+
+        <section id="home"><Home /></section>
+        <section id="about"><About /></section>
+        <section id="programs"><Programs /></section>
+        <section id="leadership"><Leadership /></section>
+        <section id="partnership"><Partnership /></section>
+        </>   
+        }
+      />
+      <Route  path="/register" element={<Register />} />
       </Routes>
     </div>
   )
