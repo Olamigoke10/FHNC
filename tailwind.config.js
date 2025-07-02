@@ -8,6 +8,9 @@ export default {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
       },
+      clipPath: {
+        'custom-arrow': 'polygon(0 0, 100% 0, 100% 100%, 50% 100%, 0 100%)',
+      },
     },
   },
   plugins: [],
