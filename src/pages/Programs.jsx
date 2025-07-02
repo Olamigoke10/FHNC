@@ -18,7 +18,7 @@ const Programs = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 transition-all duration-200 mt-14">
-        <div className="w-full space-y-3 shadow-md rounded-md px-3 py-5">
+        <div className="w-full space-y-3 shadow-md hover:shadow-lg transition-all duration-300 rounded-md px-5 py-6 bg-white">
           <div className="">
             <Truck size={50} className="text-blue-700" />
           </div>
@@ -32,7 +32,7 @@ const Programs = () => {
           </p>
         </div>
 
-        <div className="w-full space-y-3 shadow-md rounded-md px-3 py-5">
+        <div className="w-full space-y-3 shadow-md hover:shadow-lg transition-all duration-300 rounded-md px-5 py-6 bg-white">
           <div className="">
             <CarIcon size={50} className="text-blue-700" />
           </div>
@@ -46,7 +46,7 @@ const Programs = () => {
           </p>
         </div>
 
-        <div className="w-full space-y-3 shadow-md rounded-md px-3 py-5">
+        <div className="w-full space-y-3 shadow-md hover:shadow-lg transition-all duration-300 rounded-md px-5 py-6 bg-white">
           <div className="">
             <Fan size={50} className="text-blue-700" />
           </div>
