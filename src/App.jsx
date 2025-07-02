@@ -6,6 +6,8 @@ import Leadership from './pages/Leadership';
 import Partnership from './pages/Partnership';
 import Navbar from './pages/Navbar';
 import Register from './pages/Register';
+import { Contact } from 'lucide-react';
+import ContactUs from './pages/ContactUs';
 
 
 
@@ -27,6 +29,7 @@ function App() {
         <section id="leadership"><Leadership /></section>
         <section id='register'><Register/></section>
         <section id="partnership"><Partnership /></section>
+        <section id='contact'><ContactUs /></section>
         </>   
         }
       />
