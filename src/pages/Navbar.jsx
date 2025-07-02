@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/Logo1.png";
 import { useState } from "react";
 
 const Navbar = () => {

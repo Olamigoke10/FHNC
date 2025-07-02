@@ -23,7 +23,7 @@ const Programs = () => {
             <Truck size={50} className="text-blue-700" />
           </div>
           <h1 className="font-bold">Class 3 Driver Training</h1>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-sm">
             Our intensive Class 3 programme prepares you to operate trucks with
             more than two axles, including dump trucks, garbage trucks, and
             small tow trucks. This 40-hour course covers vehicle inspections,
@@ -37,7 +37,7 @@ const Programs = () => {
             <CarIcon size={50} className="text-blue-700" />
           </div>
           <h1 className="font-bold">Class 5 Driver Training</h1>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-sm">
             Whether you're a new driver or looking to improve your skills, our
             Class 5 programme offers comprehensive training for standard
             passenger vehicles. This foundation course includes urban and
@@ -51,7 +51,7 @@ const Programs = () => {
             <Fan size={50} className="text-blue-700" />
           </div>
           <h1 className="font-bold">Air Brakes Certification</h1>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-sm">
             This specialised one-day course provides essential training on air
             brake systems found in commercial vehicles. You'll learn about
             system components, maintenance requirements, troubleshooting common

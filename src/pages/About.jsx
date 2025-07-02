@@ -14,7 +14,7 @@ const About = () => {
             <h1 className="text-2xl md:text-4xl text-blue-700">Who We Are</h1>
           </div>
 
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-gray-700 leading-relaxed text-sm">
             First Nation Horizon Contracting (FNHC) is a proud Indigenous-led
             training provider committed to workforce development across Alberta.
             Our mission is to bridge critical skills gaps whilst honouring
