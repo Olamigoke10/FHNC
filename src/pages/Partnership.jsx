@@ -1,8 +1,14 @@
 import React from 'react'
+import '../style/style.css'
 
 const Partnership = () => {
   return (
-    <div>Partnership</div>
+    <div>
+      <div className='CustomContainer'>
+        <div className='CustomLoader'>
+        </div>
+      </div>
+    </div>
   )
 }
 
