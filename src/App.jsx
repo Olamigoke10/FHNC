@@ -25,11 +25,11 @@ function App() {
         <section id="about"><About /></section>
         <section id="programs"><Programs /></section>
         <section id="leadership"><Leadership /></section>
+        <section id='register'><Register/></section>
         <section id="partnership"><Partnership /></section>
         </>   
         }
       />
-      <Route  path="/register" element={<Register />} />
       </Routes>
     </div>
   )

@@ -82,20 +82,20 @@ const Leadership = () => {
         {/* Left Text */}
         <div className="space-y-6 text-sm text-blue-900">
           <div>
-            <h3 className="font-semibold text-base mb-1 text-right">
+            <h3 className="font-semibold text-base mb-1 md:text-right sm:text-left">
               Relationship-Based Learning
             </h3>
-            <p className="text-right">
+            <p className="md:text-right sm:text-left">
               We build strong connections between instructors and students,
               recognising that trust and respect form the foundation of
               effective skills transfer...
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-base mb-1 text-right">
+            <h3 className="font-semibold text-base mb-1 md:text-right sm:text-left">
               Environmental Stewardship
             </h3>
-            <p className="text-right">
+            <p className="text-right sm:text-left">
               Honouring traditional Indigenous connections to the land, we
               incorporate responsible environmental practices...
             </p>
