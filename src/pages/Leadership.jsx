@@ -1,6 +1,6 @@
 import React from "react";
 import LeadershipPng from "../assets/images/Leadership.png";
-import { Handshake, Globe, Images, Recycle  } from "lucide-react";
+import { Handshake, Globe, Images, Recycle } from "lucide-react";
 
 const Leadership = () => {
   return (
@@ -60,40 +60,42 @@ const Leadership = () => {
                 records whilst maximising allowed driving time
               </p>
             </div>
-
-            
           </div>
           <p className="sm:text-sm md:text-base ">
-              All our specialised courses can be customised for individual needs
-              or delivered as comprehensive packages for those seeking multiple
-              certifications. Group bookings for communities and organisations
-              are available with special rates
-            </p>
+            All our specialised courses can be customised for individual needs
+            or delivered as comprehensive packages for those seeking multiple
+            certifications. Group bookings for communities and organisations are
+            available with special rates
+          </p>
         </div>
       </div>
 
-
-      <h2 className="text-2xl md:text-4xl font-bold text-center text-blue-900 mb-4">
+      <h2 className="text-1xl md:text-2xl font-bold  text-blue-900 mb-4 mt-28">
         Our Indigenous Leadership Approach
       </h2>
-      <p className="text-center max-w-3xl mx-auto mb-10 text-gray-700">
-        FNHC’s leadership model integrates traditional Indigenous values with modern training excellence. Our approach emphasises:
+      <p className="max-w-3xl mb-10 text-gray-700">
+        FNHC's leadership model integrates traditional Indigenous values with
+        modern training excellence. Our approach emphasises:
       </p>
 
       <div className="grid md:grid-cols-3 gap-10 items-center max-w-6xl mx-auto">
         {/* Left Text */}
         <div className="space-y-6 text-sm text-blue-900">
           <div>
-            <h3 className="font-semibold text-base mb-1">Relationship-Based Learning</h3>
-            <p>
+            <h3 className="font-semibold text-base mb-1 text-right">
+              Relationship-Based Learning
+            </h3>
+            <p className="text-right">
               We build strong connections between instructors and students,
-              recognising that trust and respect form the foundation of effective
-              skills transfer...
+              recognising that trust and respect form the foundation of
+              effective skills transfer...
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-base mb-1">Environmental Stewardship</h3>
-            <p>
+            <h3 className="font-semibold text-base mb-1 text-right">
+              Environmental Stewardship
+            </h3>
+            <p className="text-right">
               Honouring traditional Indigenous connections to the land, we
               incorporate responsible environmental practices...
             </p>
@@ -106,31 +108,34 @@ const Leadership = () => {
             {/* Top-Left */}
             <path
               d="M100,100 L0,100 A100,100 0 0,1 100,0 Z 
-                 M100,100 L45,100 A55,55 0 0,0 100,45 Z"
+     M100,100 L45,100 A55,55 0 0,0 100,45 Z"
               fill="#f1f5ff"
               stroke="#3b82f6"
               strokeWidth="2"
             />
+
             {/* Top-Right */}
             <path
               d="M100,100 L100,0 A100,100 0 0,1 200,100 Z 
-                 M100,100 L100,45 A55,55 0 0,0 155,100 Z"
+     M100,100 L100,45 A55,55 0 0,0 155,100 Z"
               fill="#f1f5ff"
               stroke="#3b82f6"
               strokeWidth="2"
             />
+
             {/* Bottom-Left */}
             <path
               d="M100,100 L0,100 A100,100 0 0,0 100,200 Z 
-                 M100,100 L45,100 A55,55 0 0,1 100,155 Z"
+     M100,100 L45,100 A55,55 0 0,1 100,155 Z"
               fill="#f1f5ff"
               stroke="#3b82f6"
               strokeWidth="2"
             />
+
             {/* Bottom-Right */}
             <path
-              d="M200,100 L200,100 A100,100 0 0,0 100,200 Z 
-                 M100,100 L155,100 A55,55 0 0,1 100,155 Z"
+              d="M100,100 L200,100 A100,100 0 0,1 100,200 Z 
+     M100,100 L155,100 A55,55 0 0,0 100,155 Z"
               fill="#f1f5ff"
               stroke="#ec4899"
               strokeWidth="2"
@@ -157,17 +162,18 @@ const Leadership = () => {
 
             <foreignObject x="135" y="135" width="30" height="30">
               <div className="w-full h-full flex items-center justify-center text-xl text-blue-700">
-                < Recycle/>
+                <Recycle />
               </div>
             </foreignObject>
           </svg>
-
         </div>
 
         {/* Right Text */}
         <div className="space-y-6 text-sm text-blue-900">
           <div>
-            <h3 className="font-semibold text-base mb-1">Holistic Skills Development</h3>
+            <h3 className="font-semibold text-base mb-1">
+              Holistic Skills Development
+            </h3>
             <p>
               Beyond technical driving skills, we incorporate broader employment
               readiness, cultural awareness...
@@ -176,13 +182,12 @@ const Leadership = () => {
           <div>
             <h3 className="font-semibold text-base mb-1">Community Impact</h3>
             <p>
-              We measure success not just by certification rates but by meaningful
-              employment outcomes...
+              We measure success not just by certification rates but by
+              meaningful employment outcomes...
             </p>
           </div>
         </div>
       </div>
-
     </section>
   );
 };
