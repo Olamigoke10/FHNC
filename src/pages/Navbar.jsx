@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "../assets/images/Logo1.png";
 import { useState } from "react";
@@ -25,7 +24,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex">
           <ul className="flex gap-x-6 text-sm text-gray-700 font-medium justify-center items-center">
             <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
@@ -74,8 +73,9 @@ const Navbar = () => {
             </li>
 
             <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
-              <Link to="/register">Registration</Link>
+              <a href="#register">Registration</a>
             </li>
+
             <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
               <a href="#contact">Contact</a>
             </li>
@@ -83,6 +83,7 @@ const Navbar = () => {
         </nav>
       </div>
 
+      {/* Mobile Navigation */}
       {isMobileOpen && (
         <div className="md:hidden flex flex-col px-4 space-y-3 pb-4 gap-y-2 text-sm font-medium text-gray-700 transition-all duration-300">
           <a href="#home" onClick={() => setIsMobileOpen(false)}>
@@ -139,9 +140,9 @@ const Navbar = () => {
             </ul>
           )}
 
-          <Link to="/register" onClick={() => setIsMobileOpen(false)}>
+          <a href="#register" onClick={() => setIsMobileOpen(false)}>
             Registration
-          </Link>
+          </a>
 
           <a href="#contact" onClick={() => setIsMobileOpen(false)}>
             Contact

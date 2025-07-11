@@ -7,11 +7,11 @@ const About = () => {
       <div className="flex flex-col md:flex-row items-center gap-10">
         
         {/* Text Column */}
-        <div className="md:w-1/2">
+        <div className="md:w-1/2" data-aos="fade-left">
           {/* Line + Heading */}
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-1 h-4 bg-blue-600 rounded-lg"></div>
-            <h1 className="text-2xl md:text-4xl text-blue-700">Who We Are</h1>
+            <div className="w-1 h-4 bg-blue-900 rounded-lg"></div>
+            <h1 className="text-2xl md:text-4xl text-blue-900">Who We Are</h1>
           </div>
 
           <p className="text-gray-700 leading-relaxed sm:text-sm md:text-base">
@@ -34,7 +34,7 @@ const About = () => {
         </div>
 
         {/* Image Column */}
-        <div className="md:w-1/2">
+        <div className="md:w-1/2" data-aos="fade-right">
           <img
             src={AboutImg}
             alt="About Us"

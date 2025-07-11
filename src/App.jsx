@@ -6,12 +6,22 @@ import Leadership from './pages/Leadership';
 import Partnership from './pages/Partnership';
 import Navbar from './pages/Navbar';
 import Register from './pages/Register';
-import { Contact } from 'lucide-react';
 import ContactUs from './pages/ContactUs';
+
+import AOS from 'aos';
+import "aos/dist/aos.css";
+import { useEffect } from 'react';
 
 
 
 function App() {
+
+  useEffect(() =>{
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, [])
 
   return (
     <div className='flex flex-col main-h-screen'>
@@ -27,8 +37,8 @@ function App() {
         <section id="about"><About /></section>
         <section id="programs"><Programs /></section>
         <section id="leadership"><Leadership /></section>
-        <section id='register'><Register/></section>
         <section id="partnership"><Partnership /></section>
+        <section id='register'><Register/></section>
         <section id='contact'><ContactUs /></section>
         </>   
         }
