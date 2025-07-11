@@ -41,13 +41,13 @@ const ContactUs = () => {
           <div className="flex flex-col md:flex-row gap-3">
             <button
               type="button"
-              className="bg-blue-600 p-3 rounded-md text-white shadow-md hover:bg-blue-700 transition"
+              className="w-full bg-blue-600 p-3 rounded-md text-white shadow-md hover:bg-blue-700 transition"
             >
               RequestInformation
             </button>
             <button
               type="button"
-              className="p-3 border border-blue-400 rounded-md text-blue-500 hover:bg-blue-50 transition"
+              className=" w-full p-3 border border-blue-400 rounded-md text-blue-500 hover:bg-blue-50 transition"
             >
               View Course Calendar
             </button>
