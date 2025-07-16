@@ -3,7 +3,7 @@ import ContactImg from "../assets/images/Contact.png";
 
 const ContactUs = () => {
   return (
-    <section className="max-w-7xl py-5 px-5 mx-auto mt-2" id="contact">
+    <section className="max-w-7xl py-5 px-5 mx-auto mt-2" id="contact" data-aos="fade-up">
       <h2 className="text-blue-900 text-xl md:text-2xl mb-10">
         Contact us Today
       </h2>

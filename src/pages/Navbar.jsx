@@ -1,5 +1,5 @@
 import { ChevronDown, Menu, X } from "lucide-react";
-import logo from "../assets/images/Logo1.png";
+import logo from "../assets/images/logo.png";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -8,147 +8,208 @@ const Navbar = () => {
   const [isMobileDropdown, setIsMobileDropdown] = useState(false);
 
   return (
-    <header className="w-full shadow-md">
-      <div className="flex items-center justify-between px-4 py-4 h-36">
-        {/* Header */}
-        <div className="w-40">
-          <a href="#home">
-            <img src={logo} alt="Logo" className="w-full" />
-          </a>
-        </div>
+    <header className="w-full bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <a href="#home" className="flex items-center">
+              <img src={logo} alt="Logo" className="h-12 w-auto" />
+            </a>
+          </div>
 
-        {/* Mobile toggle */}
-        <div className="md:hidden">
-          <button onClick={() => setIsMobileOpen(!isMobileOpen)}>
-            {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+          {/* Mobile toggle */}
+          <div className="md:hidden flex items-center">
+            <button 
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-all"
+            >
+              <span className="sr-only">Open main menu</span>
+              {isMobileOpen ? (
+                <X size={24} className="block" />
+              ) : (
+                <Menu size={24} className="block" />
+              )}
+            </button>
+          </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex">
-          <ul className="flex gap-x-6 text-sm text-gray-700 font-medium justify-center items-center">
-            <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
-              <a href="#home">Home</a>
-            </li>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <a 
+              href="#home" 
+              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+            >
+              Home
+            </a>
 
-            <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
-              <a href="#about">About Us</a>
-            </li>
+            <a 
+              href="#about" 
+              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+            >
+              About Us
+            </a>
 
             {/* Dropdown */}
-            <li
-              className="relative cursor-pointer"
+            <div 
+              className="relative"
               onMouseEnter={() => setIsOpen(true)}
               onMouseLeave={() => setIsOpen(false)}
             >
-              <span className="flex items-center">
+              <button 
+                className="flex items-center text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium group"
+              >
                 <span>Programs</span>
                 <ChevronDown
-                  size={15}
-                  className={`transition-transform duration-200 ${
-                    isOpen ? "rotate-180" : ""
+                  size={16}
+                  className={`ml-1 transition-transform duration-200 ${
+                    isOpen ? "rotate-180 text-indigo-600" : "text-gray-500 group-hover:text-indigo-600"
                   }`}
                 />
-              </span>
+              </button>
 
               {isOpen && (
-                <ul className="absolute left-0 top-5 bg-white border border-gray-300 shadow-md rounded w-48 z-10 p-5">
-                  <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm gap-y-2">
-                    <a href="#programs" className="px-2">
-                      TrainingPrograms
+                <div className="absolute left-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-200">
+                  <div className="py-1">
+                    <a
+                      href="#programs"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                    >
+                      Training Programs
                     </a>
-                  </li>
-                  <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm text-start">
-                    <a href="#leadership" className="px-2">
-                      IndigenousLeadership
+                    <a
+                      href="#leadership"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                    >
+                      Indigenous Leadership
                     </a>
-                  </li>
-                  <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm">
-                    <a href="#partnerships" className="px-2">
+                    <a
+                      href="#partnerships"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                    >
                       Partnerships
                     </a>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               )}
-            </li>
+            </div>
 
-            <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
-              <a href="#register">Registration</a>
-            </li>
+            <a 
+              href="#register" 
+              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+            >
+              Registration
+            </a>
 
-            <li className="hover:bg-slate-100 p-1.5 rounded-md transition-all duration-300 ease-in-out">
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
+            <a 
+              href="#contact" 
+              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+            >
+              Contact
+            </a>
+
+            <a
+              href="#register"
+              className="ml-4 px-4 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 shadow-sm hover:shadow-md transition-all duration-200"
+            >
+              Join Now
+            </a>
+          </nav>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
-      {isMobileOpen && (
-        <div className="md:hidden flex flex-col px-4 space-y-3 pb-4 gap-y-2 text-sm font-medium text-gray-700 transition-all duration-300">
-          <a href="#home" onClick={() => setIsMobileOpen(false)}>
+      <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white border-t border-gray-100">
+          <a
+            href="#home"
+            onClick={() => setIsMobileOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+          >
             Home
           </a>
 
-          <a href="#about" onClick={() => setIsMobileOpen(false)}>
-            About us
+          <a
+            href="#about"
+            onClick={() => setIsMobileOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+          >
+            About Us
           </a>
 
           {/* Mobile Dropdown */}
-          <div
-            className="flex items-center gap-x-1"
-            onClick={() => setIsMobileDropdown(!isMobileDropdown)}
-          >
-            <span>Programs</span>
-            <ChevronDown
-              size={15}
-              className={`transition-transform duration-200 ${
-                isMobileDropdown ? "rotate-180" : ""
-              }`}
-            />
+          <div>
+            <button
+              onClick={() => setIsMobileDropdown(!isMobileDropdown)}
+              className="flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+            >
+              <span>Programs</span>
+              <ChevronDown
+                size={16}
+                className={`transition-transform duration-200 ${
+                  isMobileDropdown ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            <div className={`pl-4 ${isMobileDropdown ? 'block' : 'hidden'}`}>
+              <a
+                href="#programs"
+                onClick={() => {
+                  setIsMobileOpen(false);
+                  setIsMobileDropdown(false);
+                }}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+              >
+                Training Programs
+              </a>
+              <a
+                href="#leadership"
+                onClick={() => {
+                  setIsMobileOpen(false);
+                  setIsMobileDropdown(false);
+                }}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+              >
+                Indigenous Leadership
+              </a>
+              <a
+                href="#partnerships"
+                onClick={() => {
+                  setIsMobileOpen(false);
+                  setIsMobileDropdown(false);
+                }}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+              >
+                Partnerships
+              </a>
+            </div>
           </div>
 
-          {isMobileDropdown && (
-            <ul className="mt-2 space-y-2 bg-white border rounded shadow-md p-4 transition-all ease-in-out duration-300">
-              <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm gap-y-2">
-                <a
-                  href="#programs"
-                  className="px-2"
-                  onClick={() => setIsMobileOpen(false)}
-                >
-                  TrainingPrograms
-                </a>
-              </li>
-              <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm text-start">
-                <a
-                  href="#leadership"
-                  className="px-2"
-                  onClick={() => setIsMobileOpen(false)}
-                >
-                  IndigenousLeadership
-                </a>
-              </li>
-              <li className="py-3 hover:bg-slate-100 rounded-md shadow-sm">
-                <a
-                  href="#partnerships"
-                  onClick={() => setIsMobileOpen(false)}
-                  className="px-2"
-                >
-                  Partnerships
-                </a>
-              </li>
-            </ul>
-          )}
-
-          <a href="#register" onClick={() => setIsMobileOpen(false)}>
+          <a
+            href="#register"
+            onClick={() => setIsMobileOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+          >
             Registration
           </a>
 
-          <a href="#contact" onClick={() => setIsMobileOpen(false)}>
+          <a
+            href="#contact"
+            onClick={() => setIsMobileOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+          >
             Contact
           </a>
+
+          <a
+            href="#register"
+            onClick={() => setIsMobileOpen(false)}
+            className="block w-full mt-2 px-4 py-2 rounded-md bg-indigo-600 text-white text-base font-medium text-center hover:bg-indigo-700 shadow-sm transition-colors"
+          >
+            Join Now
+          </a>
         </div>
-      )}
+      </div>
     </header>
   );
 };

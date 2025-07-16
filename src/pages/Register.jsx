@@ -36,7 +36,7 @@ const Register = () => {
         Digital Registration and Course Management
       </h2>
 
-      <div className="flex flex-col md:flex-row gap-32">
+      <div className="flex flex-col md:flex-row gap-32" data-aos="fade-down">
         {/* Left Content */}
         <div className="space-y-6 md:w-1/2">
           <div>
@@ -120,7 +120,7 @@ const Register = () => {
       </div>
 
       {/* Email Form */}
-      <div className="mt-16 flex md:flex-row flex-col gap-10">
+      <div className="mt-16 flex md:flex-row flex-col gap-10" data-aos="fade-up">
         <div className="md:w-1/2 w-full">
           <form
             ref={form}
