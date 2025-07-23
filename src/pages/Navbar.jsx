@@ -1,6 +1,7 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "../assets/images/logo.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,9 +14,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#home" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img src={logo} alt="Logo" className="h-12 w-auto" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -35,19 +36,19 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a 
-              href="#home" 
+            <Link 
+              to="/" 
               className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
             >
               Home
-            </a>
+            </Link>
 
-            <a 
-              href="#about" 
+            <Link 
+              to="/about" 
               className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
             >
               About Us
-            </a>
+            </Link>
 
             {/* Dropdown */}
             <div 
@@ -70,49 +71,57 @@ const Navbar = () => {
               {isOpen && (
                 <div className="absolute left-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-200">
                   <div className="py-1">
-                    <a
-                      href="#programs"
+                    <Link
+                      to="/programs"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
                     >
                       Training Programs
-                    </a>
-                    <a
-                      href="#leadership"
+                    </Link>
+                    <Link
+                      to="/leadership"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
                     >
                       Indigenous Leadership
-                    </a>
-                    <a
-                      href="#partnerships"
+                    </Link>
+                    <Link
+                      to="/partnership"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
                     >
                       Partnerships
-                    </a>
+                    </Link>
                   </div>
                 </div>
               )}
             </div>
 
-            <a 
-              href="#register" 
+            {/* Added Blog Link */}
+            <Link 
+              to="/blog" 
+              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+            >
+              Blog
+            </Link>
+
+            <Link 
+              to="/register" 
               className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
             >
               Registration
-            </a>
+            </Link>
 
-            <a 
-              href="#contact" 
+            <Link 
+              to="/contact" 
               className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
             >
               Contact
-            </a>
+            </Link>
 
-            <a
-              href="#register"
+            <Link
+              to="/register"
               className="ml-4 px-4 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 shadow-sm hover:shadow-md transition-all duration-200"
             >
               Join Now
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
@@ -120,21 +129,21 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white border-t border-gray-100">
-          <a
-            href="#home"
+          <Link
+            to="/"
             onClick={() => setIsMobileOpen(false)}
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
           >
             Home
-          </a>
+          </Link>
 
-          <a
-            href="#about"
+          <Link
+            to="/about"
             onClick={() => setIsMobileOpen(false)}
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
           >
             About Us
-          </a>
+          </Link>
 
           {/* Mobile Dropdown */}
           <div>
@@ -153,7 +162,7 @@ const Navbar = () => {
 
             <div className={`pl-4 ${isMobileDropdown ? 'block' : 'hidden'}`}>
               <a
-                href="#programs"
+                href="/programs"
                 onClick={() => {
                   setIsMobileOpen(false);
                   setIsMobileDropdown(false);
@@ -173,7 +182,7 @@ const Navbar = () => {
                 Indigenous Leadership
               </a>
               <a
-                href="#partnerships"
+                href="#partnership"
                 onClick={() => {
                   setIsMobileOpen(false);
                   setIsMobileDropdown(false);
@@ -185,29 +194,38 @@ const Navbar = () => {
             </div>
           </div>
 
-          <a
-            href="#register"
+          {/* Added Blog Link for Mobile */}
+          <Link
+            to="/blog"
+            onClick={() => setIsMobileOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+          >
+            Blog
+          </Link>
+
+          <Link
+            to="/register"
             onClick={() => setIsMobileOpen(false)}
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
           >
             Registration
-          </a>
+          </Link>
 
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             onClick={() => setIsMobileOpen(false)}
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
           >
             Contact
-          </a>
+          </Link>
 
-          <a
-            href="#register"
+          <Link
+            to="/register"
             onClick={() => setIsMobileOpen(false)}
             className="block w-full mt-2 px-4 py-2 rounded-md bg-indigo-600 text-white text-base font-medium text-center hover:bg-indigo-700 shadow-sm transition-colors"
           >
             Join Now
-          </a>
+          </Link>
         </div>
       </div>
     </header>

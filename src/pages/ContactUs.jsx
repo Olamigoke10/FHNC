@@ -1,112 +1,165 @@
 import React from "react";
 import ContactImg from "../assets/images/Contact.png";
+import { Phone, Mail, MapPin, Clock, Calendar, Info, Handshake } from "lucide-react";
 
 const ContactUs = () => {
   return (
-    <section className="max-w-7xl py-5 px-5 mx-auto mt-2" id="contact" data-aos="fade-up">
-      <h2 className="text-blue-900 text-xl md:text-2xl mb-10">
-        Contact us Today
-      </h2>
+    <section className="max-w-7xl px-4 sm:px-6 lg:px-8 py-16 mx-auto" id="contact">
+      {/* Header Section */}
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center justify-center gap-3 mb-4">
+          <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-blue-400 rounded-full"></div>
+          <span className="text-sm font-semibold tracking-wider text-blue-600 uppercase">
+            Get In Touch
+          </span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Contact <span className="text-blue-600">Our Team</span> Today
+        </h2>
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          Ready to start your training journey or explore partnership opportunities? 
+          Our team is here to guide you through the process.
+        </p>
+      </div>
 
-      <div className="w-full flex flex-col-reverse md:flex-row gap-5">
-        <div className="w-1/2 space-y-5">
-          <p className="text-sm text-gray-700">
-            Ready to start your training journey or explore partnership
-            opportunities with First Nation Horizon Contracting? Our team is
-            here to answer your questions and guide you through the process.
-          </p>
+      <div className="flex flex-col lg:flex-row gap-12">
+        {/* Left Column - Contact Info */}
+        <div className="lg:w-1/2 space-y-8">
+          {/* Contact Cards */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* General Enquiries */}
+            <div className="bg-white rounded-xl shadow-md  border border-gray-100 hover:shadow-lg transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-blue-50 rounded-full">
+                  <Info size={24} className="text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">General Enquiries</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 ">
+                  <Phone size={18} className="text-gray-500" />
+                  <a href="tel:780-804-0718" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    780-804-0718
+                  </a>
+                </div>
+                <div className="flex items-start">
+                  <Mail size={18} className="text-gray-500" />
+                  <a href="mailto:operations@firstnationcontracting.biz" className="text-gray-700 hover:text-blue-600 transition-colors text-sm break-words">
+                    operations@firstnationcontracting.biz
+                  </a>
+                </div>
+              </div>
+            </div>
 
-          <div className="space-y-3">
-            <h2 className="text-blue-900 text-lg">General Enquires</h2>
-            <p className="text-sm text-gray-900">
-              Telephone: 780-804-0718
-            </p>
-            <p className="text-sm text-gray-900">
-              <span>Email: </span> <a href="mailto:operations@firstnationcontracting.biz" className="hover:underline">operations@firstnationcontracting.biz</a>
-            </p>
+            {/* Partnerships */}
+            <div className="bg-white rounded-xl shadow-md  border border-gray-100 hover:shadow-lg transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-blue-50 rounded-full">
+                  <Handshake size={24} className="text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Partnerships</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Phone size={18} className="text-gray-500" />
+                  <a href="tel:780-804-0718" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    780-804-0718
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail size={18} className="text-gray-500" />
+                  <a href="mailto:operations@firstnationcontracting.biz" className="text-gray-700 hover:text-blue-600 transition-colors text-sm break-words">
+                    operations@firstnationcontracting.biz
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-3">
-            <h2 className="text-blue-900 text-lg">
-              Corporate & Community Partnerships
-            </h2>
-            <p className="text-sm text-gray-900">
-              Telephone: 780-804-0718
-            </p>
-            <p className="text-sm text-gray-900">
-              <span>Email: </span> <a href="mailto:operations@firstnationcontracting.biz" className="hover:underline">operations@firstnationcontracting.biz</a>
-            </p>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-3">
-            <button
-              type="button"
-              className="w-full bg-blue-600 p-3 rounded-md text-white shadow-md hover:bg-blue-700 transition"
-            >
-              RequestInformation
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <button className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition-all flex items-center justify-center gap-2">
+              <Info size={18} />
+              Request Information
             </button>
-            <button
-              type="button"
-              className=" w-full p-3 border border-blue-400 rounded-md text-blue-500 hover:bg-blue-50 transition"
-            >
+            <button className="px-6 py-3 border-2 border-blue-500 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
+              <Calendar size={18} />
               View Course Calendar
             </button>
           </div>
+
+          {/* Image */}
+          <div className="pt-6">
+            <div className="relative rounded-xl overflow-hidden shadow-lg">
+              <img
+                src={ContactImg}
+                alt="Contact our team"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
+            </div>
+          </div>
         </div>
 
-        <div className="md:w-1/2 w-full">
-          <img
-            src={ContactImg}
-            alt=""
-            className="rounded-md shadow-md md:w-[400px] w-full"
-          />
-          <div className="mt-6">
-            <h2 className="text-lg md:text-xl py-6 text-blue-900">
-              Head Office
-            </h2>
-
+        {/* Right Column - Locations & Hours */}
+        <div className="lg:w-1/2 space-y-8">
+          {/* Head Office */}
+          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 bg-blue-50 rounded-full">
+                <MapPin size={24} className="text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Head Office</h3>
+            </div>
             <div className="space-y-2">
-              <p className="text-sm text-gray-700">
-                Building 57, Alison Bay Fort Chipewyan
-              </p>
-              <p className="text-sm text-gray-700">Top101</p>
-              <p className="text-sm text-gray-700">Canada</p>
+              <p className="text-gray-600">Building 57, Alison Bay</p>
+              <p className="text-gray-600">Fort Chipewyan, Top 101</p>
+              <p className="text-gray-600">Canada</p>
             </div>
           </div>
 
-          <div className="mt-6">
-            <h2 className="text-lg md:text-xl py-6 text-blue-900">
-              Dispatch Office
-            </h2>
-
+          {/* Dispatch Office */}
+          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 bg-blue-50 rounded-full">
+                <MapPin size={24} className="text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Dispatch Office</h3>
+            </div>
             <div className="space-y-2">
-              <p className="text-sm text-gray-700">
-                101-9908 Franklin Ave Fort Mcmurray
-              </p>
-              <p className="text-sm text-gray-700">Alberta T9H2K5</p>
-              <p className="text-sm text-gray-700">Canada</p>
-
-              <p className="text-sm text-gray-700">
-                We also offer mobile training services that can be delivered
-                directly to communities throughout Alberta. Contact our
-                partnership team to discuss bringing our programmes to your
-                location.
+              <p className="text-gray-600">101-9908 Franklin Ave</p>
+              <p className="text-gray-600">Fort McMurray, Alberta T9H 2K5</p>
+              <p className="text-gray-600">Canada</p>
+            </div>
+            <div className="mt-4 pt-4 border-t border-gray-100">
+              <p className="text-sm text-gray-600">
+                We offer mobile training services that can be delivered directly 
+                to communities throughout Alberta.
               </p>
             </div>
           </div>
 
-          <div>
-            <h2 className="text-lg md:text-xl py-6 text-blue-900">
-              Hours of Operation
-            </h2>
-            <div className=" space-y-2">
-              <p className="text-sm text-gray-700">
-                Monday to Friday: 8:00 AM - 6:00 PM
-              </p>
-              <p className="text-sm text-gray-700">
-                Saturday: 9:00 AM - 4:00 PM
-              </p>
-              <p className="text-sm text-gray-700">Sunday: Closed</p>
+          {/* Hours */}
+          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 bg-blue-50 rounded-full">
+                <Clock size={24} className="text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Hours of Operation</h3>
+            </div>
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="text-gray-600">Monday - Friday</span>
+                <span className="text-gray-700 font-medium">8:00 AM - 6:00 PM</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Saturday</span>
+                <span className="text-gray-700 font-medium">9:00 AM - 4:00 PM</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Sunday</span>
+                <span className="text-gray-700 font-medium">Closed</span>
+              </div>
             </div>
           </div>
         </div>
