@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CalendarDays, Clock, User, ArrowRight } from 'lucide-react';
 
-const API_URL = 'http://127.0.0.1:8000/api/blogs/posts/'; // Replace with your Django API endpoint
+const API_URL = 'https://fhnc-backend.onrender.com/api/blogs/posts/';
 
 const BlogsSection = () => {
   const [blogs, setBlogs] = useState([]);
@@ -28,8 +28,33 @@ const BlogsSection = () => {
     fetchBlogs();
   }, []);
 
-  if (loading) return <div className="text-center py-16">Loading blogs...</div>;
-  if (error) return <div className="text-center py-16 text-red-500">Error: {error}</div>;
+  if (loading) return (
+    <div className="flex justify-center items-center h-[50vh]">
+      <div className="loader">
+        <div className="flex space-x-2">
+          <div className="w-4 h-4 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+          <div className="w-4 h-4 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+          <div className="w-4 h-4 bg-blue-600 rounded-full animate-bounce"></div>
+        </div>
+        <p className="mt-4 text-gray-600">Loading blog posts...</p>
+      </div>
+    </div>
+  );
+
+  if (error) return (
+    <div className="text-center py-16 text-red-500">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p>Error loading blogs: {error}</p>
+      <button 
+        onClick={() => window.location.reload()} 
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+      >
+        Retry
+      </button>
+    </div>
+  );
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" id="blog">
@@ -94,6 +119,9 @@ const BlogsSection = () => {
       {/* Empty State */}
       {blogs.length === 0 && (
         <div className="text-center py-12">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           <h3 className="text-xl font-medium text-gray-700 mb-2">No blog posts yet</h3>
           <p className="text-gray-500">Check back later for updates</p>
         </div>
