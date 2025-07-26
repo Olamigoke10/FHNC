@@ -1,12 +1,18 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "../assets/images/logo.png";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobileDropdown, setIsMobileDropdown] = useState(false);
+  const location = useLocation();
+
+  // Check if a path is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <header className="w-full bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
@@ -14,9 +20,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center">
+            <NavLink to="/" className="flex items-center">
               <img src={logo} alt="Logo" className="h-12 w-auto" />
-            </Link>
+            </NavLink>
           </div>
 
           {/* Mobile toggle */}
@@ -36,19 +42,27 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link 
+            <NavLink 
               to="/" 
-              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+              className={({ isActive }) => 
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
+                }`
+              }
             >
               Home
-            </Link>
+            </NavLink>
 
-            <Link 
+            <NavLink 
               to="/about" 
-              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+              className={({ isActive }) => 
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
+                }`
+              }
             >
               About Us
-            </Link>
+            </NavLink>
 
             {/* Dropdown */}
             <div 
@@ -57,7 +71,11 @@ const Navbar = () => {
               onMouseLeave={() => setIsOpen(false)}
             >
               <button 
-                className="flex items-center text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium group"
+                className={`flex items-center px-3 py-2 text-sm font-medium group ${
+                  isActive('/programs') || isActive('/leadership') || isActive('/partnership') 
+                    ? 'text-indigo-600' 
+                    : 'text-gray-700 hover:text-indigo-600'
+                }`}
               >
                 <span>Programs</span>
                 <ChevronDown
@@ -71,57 +89,85 @@ const Navbar = () => {
               {isOpen && (
                 <div className="absolute left-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-200">
                   <div className="py-1">
-                    <Link
+                    <NavLink
                       to="/programs"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                      className={({ isActive }) => 
+                        `block px-4 py-2 text-sm hover:bg-indigo-50 transition-colors ${
+                          isActive ? 'text-indigo-700 bg-indigo-50' : 'text-gray-700 hover:text-indigo-700'
+                        }`
+                      }
                     >
                       Training Programs
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                       to="/leadership"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                      className={({ isActive }) => 
+                        `block px-4 py-2 text-sm hover:bg-indigo-50 transition-colors ${
+                          isActive ? 'text-indigo-700 bg-indigo-50' : 'text-gray-700 hover:text-indigo-700'
+                        }`
+                      }
                     >
                       Indigenous Leadership
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                       to="/partnership"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                      className={({ isActive }) => 
+                        `block px-4 py-2 text-sm hover:bg-indigo-50 transition-colors ${
+                          isActive ? 'text-indigo-700 bg-indigo-50' : 'text-gray-700 hover:text-indigo-700'
+                        }`
+                      }
                     >
                       Partnerships
-                    </Link>
+                    </NavLink>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Added Blog Link */}
-            <Link 
+            {/* Blog Link */}
+            <NavLink 
               to="/blog" 
-              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+              className={({ isActive }) => 
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
+                }`
+              }
             >
               Blog
-            </Link>
+            </NavLink>
 
-            <Link 
+            <NavLink 
               to="/register" 
-              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+              className={({ isActive }) => 
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
+                }`
+              }
             >
               Registration
-            </Link>
+            </NavLink>
 
-            <Link 
+            <NavLink 
               to="/contact" 
-              className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300"
+              className={({ isActive }) => 
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
+                }`
+              }
             >
               Contact
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/register"
-              className="ml-4 px-4 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 shadow-sm hover:shadow-md transition-all duration-200"
+              className={({ isActive }) => 
+                `ml-4 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 ${
+                  isActive ? 'bg-indigo-700 text-white' : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                }`
+              }
             >
               Join Now
-            </Link>
+            </NavLink>
           </nav>
         </div>
       </div>
@@ -129,27 +175,39 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white border-t border-gray-100">
-          <Link
+          <NavLink
             to="/"
             onClick={() => setIsMobileOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+            className={({ isActive }) => 
+              `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+              }`
+            }
           >
             Home
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/about"
             onClick={() => setIsMobileOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+            className={({ isActive }) => 
+              `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+              }`
+            }
           >
             About Us
-          </Link>
+          </NavLink>
 
           {/* Mobile Dropdown */}
           <div>
             <button
               onClick={() => setIsMobileDropdown(!isMobileDropdown)}
-              className="flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+              className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isActive('/programs') || isActive('/leadership') || isActive('/partnership')
+                  ? 'text-indigo-600 bg-indigo-50'
+                  : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+              }`}
             >
               <span>Programs</span>
               <ChevronDown
@@ -161,71 +219,99 @@ const Navbar = () => {
             </button>
 
             <div className={`pl-4 ${isMobileDropdown ? 'block' : 'hidden'}`}>
-              <a
-                href="/programs"
+              <NavLink
+                to="/programs"
                 onClick={() => {
                   setIsMobileOpen(false);
                   setIsMobileDropdown(false);
                 }}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
+                  }`
+                }
               >
                 Training Programs
-              </a>
-              <a
-                href="#leadership"
+              </NavLink>
+              <NavLink
+                to="/leadership"
                 onClick={() => {
                   setIsMobileOpen(false);
                   setIsMobileDropdown(false);
                 }}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
+                  }`
+                }
               >
                 Indigenous Leadership
-              </a>
-              <a
-                href="#partnership"
+              </NavLink>
+              <NavLink
+                to="/partnership"
                 onClick={() => {
                   setIsMobileOpen(false);
                   setIsMobileDropdown(false);
                 }}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
+                  }`
+                }
               >
                 Partnerships
-              </a>
+              </NavLink>
             </div>
           </div>
 
-          {/* Added Blog Link for Mobile */}
-          <Link
+          {/* Blog Link for Mobile */}
+          <NavLink
             to="/blog"
             onClick={() => setIsMobileOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+            className={({ isActive }) => 
+              `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+              }`
+            }
           >
             Blog
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/register"
             onClick={() => setIsMobileOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+            className={({ isActive }) => 
+              `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+              }`
+            }
           >
             Registration
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/contact"
             onClick={() => setIsMobileOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+            className={({ isActive }) => 
+              `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+              }`
+            }
           >
             Contact
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/register"
             onClick={() => setIsMobileOpen(false)}
-            className="block w-full mt-2 px-4 py-2 rounded-md bg-indigo-600 text-white text-base font-medium text-center hover:bg-indigo-700 shadow-sm transition-colors"
+            className={({ isActive }) => 
+              `block w-full mt-2 px-4 py-2 rounded-md text-base font-medium text-center shadow-sm transition-colors ${
+                isActive ? 'bg-indigo-700 text-white' : 'bg-indigo-600 text-white hover:bg-indigo-700'
+              }`
+            }
           >
             Join Now
-          </Link>
+          </NavLink>
         </div>
       </div>
     </header>
