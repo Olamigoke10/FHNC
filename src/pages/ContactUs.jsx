@@ -1,12 +1,49 @@
 import React from "react";
+import { motion } from "framer-motion";
 import ContactImg from "../assets/images/Contact.png";
 import { Phone, Mail, MapPin, Clock, Calendar, Info, Handshake } from "lucide-react";
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8 } }
+};
+
 const ContactUs = () => {
   return (
-    <section className="max-w-7xl px-4 sm:px-6 lg:px-8 py-16 mx-auto" id="contact">
+    <motion.section 
+      className="max-w-7xl px-4 sm:px-6 lg:px-8 py-16 mx-auto" 
+      id="contact"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+    >
       {/* Header Section */}
-      <div className="text-center mb-16">
+      <motion.div className="text-center mb-16" variants={itemVariants}>
         <div className="inline-flex items-center justify-center gap-3 mb-4">
           <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-blue-400 rounded-full"></div>
           <span className="text-sm font-semibold tracking-wider text-blue-600 uppercase">
@@ -20,22 +57,31 @@ const ContactUs = () => {
           Ready to start your training journey or explore partnership opportunities? 
           Our team is here to guide you through the process.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col lg:flex-row gap-12">
+      <motion.div 
+        className="flex flex-col lg:flex-row gap-12"
+        variants={containerVariants}
+      >
         {/* Left Column - Contact Info */}
-        <div className="lg:w-1/2 space-y-8">
+        <motion.div className="lg:w-1/2 space-y-8" variants={itemVariants}>
           {/* Contact Cards */}
-          <div className="grid md:grid-cols-2 gap-6">
+          <motion.div 
+            className="grid md:grid-cols-2 gap-6"
+            variants={containerVariants}
+          >
             {/* General Enquiries */}
-            <div className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all">
-              <div className="flex items-center gap-3 mb-4">
+            <motion.div 
+              className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all"
+              variants={itemVariants}
+            >
+              <div className="flex items-center gap-3 mb-4 p-6 pb-0">
                 <div className="p-3 bg-blue-50 rounded-full">
                   <Info size={24} className="text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">General Enquiries</h3>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-3 p-6 pt-3">
                 <div className="flex items-center gap-3">
                   <Phone size={18} className="text-gray-500" />
                   <a href="tel:780-804-0718" className="text-gray-700 hover:text-blue-600 transition-colors">
@@ -49,17 +95,20 @@ const ContactUs = () => {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Partnerships */}
-            <div className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all">
-              <div className="flex items-center gap-3 mb-4">
+            <motion.div 
+              className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all"
+              variants={itemVariants}
+            >
+              <div className="flex items-center gap-3 mb-4 p-6 pb-0">
                 <div className="p-3 bg-blue-50 rounded-full">
                   <Handshake size={24} className="text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">Partnerships</h3>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-3 p-6 pt-3">
                 <div className="flex items-center gap-3">
                   <Phone size={18} className="text-gray-500" />
                   <a href="tel:780-804-0718" className="text-gray-700 hover:text-blue-600 transition-colors">
@@ -73,11 +122,14 @@ const ContactUs = () => {
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 pt-4"
+            variants={itemVariants}
+          >
             <button className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition-all flex items-center justify-center gap-2">
               <Info size={18} />
               Request Information
@@ -86,26 +138,33 @@ const ContactUs = () => {
               <Calendar size={18} />
               View Course Calendar
             </button>
-          </div>
+          </motion.div>
 
           {/* Image */}
-          <div className="pt-6">
+          <motion.div className="pt-6" variants={itemVariants}>
             <div className="relative rounded-xl overflow-hidden shadow-lg">
-              <img
+              <motion.img
                 src={ContactImg}
                 alt="Contact our team"
                 className="w-full h-auto object-cover"
                 loading="lazy"
+                initial={{ opacity: 0, scale: 1.05 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Right Column - Locations & Hours */}
-        <div className="lg:w-1/2 space-y-8">
+        <motion.div className="lg:w-1/2 space-y-8" variants={itemVariants}>
           {/* Head Office */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
+          <motion.div 
+            className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all"
+            variants={itemVariants}
+          >
             <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-blue-50 rounded-full">
@@ -119,7 +178,13 @@ const ContactUs = () => {
                 <p className="text-gray-600">Canada</p>
               </div>
             </div>
-            <div className="h-64 w-full">
+            <motion.div 
+              className="h-64 w-full"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214586.5026361585!2d-111.4962276!3d58.7170656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTjCsDQzJzAxLjQiTiAxMTHCsDI5JzQ2LjQiVw!5e0!3m2!1sen!2sca!4v1620000000000!5m2!1sen!2sca"
                 width="100%"
@@ -130,11 +195,14 @@ const ContactUs = () => {
                 title="Head Office Location"
                 className="rounded-b-xl"
               ></iframe>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Dispatch Office */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
+          <motion.div 
+            className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all"
+            variants={itemVariants}
+          >
             <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-blue-50 rounded-full">
@@ -154,7 +222,13 @@ const ContactUs = () => {
                 </p>
               </div>
             </div>
-            <div className="h-64 w-full">
+            <motion.div 
+              className="h-64 w-full"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214586.5026361585!2d-111.4962276!3d58.7170656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53b7d60e3a5163c1%3A0x9700f8a6a7c4b1d8!2sFort%20McMurray%2C%20AB!5e0!3m2!1sen!2sca!4v1620000000000!5m2!1sen!2sca"
                 width="100%"
@@ -165,11 +239,14 @@ const ContactUs = () => {
                 title="Dispatch Office Location"
                 className="rounded-b-xl"
               ></iframe>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Hours */}
-          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all">
+          <motion.div 
+            className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all"
+            variants={itemVariants}
+          >
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-blue-50 rounded-full">
                 <Clock size={24} className="text-blue-600" />
@@ -190,10 +267,10 @@ const ContactUs = () => {
                 <span className="text-gray-700 font-medium">Closed</span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
