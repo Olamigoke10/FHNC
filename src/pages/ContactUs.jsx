@@ -28,7 +28,7 @@ const ContactUs = () => {
           {/* Contact Cards */}
           <div className="grid md:grid-cols-2 gap-6">
             {/* General Enquiries */}
-            <div className="bg-white rounded-xl shadow-md  border border-gray-100 hover:shadow-lg transition-all">
+            <div className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-blue-50 rounded-full">
                   <Info size={24} className="text-blue-600" />
@@ -36,14 +36,14 @@ const ContactUs = () => {
                 <h3 className="text-xl font-bold text-gray-900">General Enquiries</h3>
               </div>
               <div className="space-y-3">
-                <div className="flex items-center gap-3 ">
+                <div className="flex items-center gap-3">
                   <Phone size={18} className="text-gray-500" />
                   <a href="tel:780-804-0718" className="text-gray-700 hover:text-blue-600 transition-colors">
                     780-804-0718
                   </a>
                 </div>
-                <div className="flex items-start">
-                  <Mail size={18} className="text-gray-500" />
+                <div className="flex items-start gap-3">
+                  <Mail size={18} className="text-gray-500 mt-0.5" />
                   <a href="mailto:operations@firstnationcontracting.biz" className="text-gray-700 hover:text-blue-600 transition-colors text-sm break-words">
                     operations@firstnationcontracting.biz
                   </a>
@@ -52,7 +52,7 @@ const ContactUs = () => {
             </div>
 
             {/* Partnerships */}
-            <div className="bg-white rounded-xl shadow-md  border border-gray-100 hover:shadow-lg transition-all">
+            <div className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-blue-50 rounded-full">
                   <Handshake size={24} className="text-blue-600" />
@@ -95,6 +95,7 @@ const ContactUs = () => {
                 src={ContactImg}
                 alt="Contact our team"
                 className="w-full h-auto object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
             </div>
@@ -104,38 +105,66 @@ const ContactUs = () => {
         {/* Right Column - Locations & Hours */}
         <div className="lg:w-1/2 space-y-8">
           {/* Head Office */}
-          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-blue-50 rounded-full">
-                <MapPin size={24} className="text-blue-600" />
+          <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-blue-50 rounded-full">
+                  <MapPin size={24} className="text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Head Office</h3>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Head Office</h3>
+              <div className="space-y-2 mb-4">
+                <p className="text-gray-600">Building 57, Alison Bay</p>
+                <p className="text-gray-600">Fort Chipewyan, Top 101</p>
+                <p className="text-gray-600">Canada</p>
+              </div>
             </div>
-            <div className="space-y-2">
-              <p className="text-gray-600">Building 57, Alison Bay</p>
-              <p className="text-gray-600">Fort Chipewyan, Top 101</p>
-              <p className="text-gray-600">Canada</p>
+            <div className="h-64 w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214586.5026361585!2d-111.4962276!3d58.7170656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTjCsDQzJzAxLjQiTiAxMTHCsDI5JzQ2LjQiVw!5e0!3m2!1sen!2sca!4v1620000000000!5m2!1sen!2sca"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                title="Head Office Location"
+                className="rounded-b-xl"
+              ></iframe>
             </div>
           </div>
 
           {/* Dispatch Office */}
-          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-blue-50 rounded-full">
-                <MapPin size={24} className="text-blue-600" />
+          <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-blue-50 rounded-full">
+                  <MapPin size={24} className="text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Dispatch Office</h3>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Dispatch Office</h3>
+              <div className="space-y-2 mb-4">
+                <p className="text-gray-600">101-9908 Franklin Ave</p>
+                <p className="text-gray-600">Fort McMurray, Alberta T9H 2K5</p>
+                <p className="text-gray-600">Canada</p>
+              </div>
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <p className="text-sm text-gray-600">
+                  We offer mobile training services that can be delivered directly 
+                  to communities throughout Alberta.
+                </p>
+              </div>
             </div>
-            <div className="space-y-2">
-              <p className="text-gray-600">101-9908 Franklin Ave</p>
-              <p className="text-gray-600">Fort McMurray, Alberta T9H 2K5</p>
-              <p className="text-gray-600">Canada</p>
-            </div>
-            <div className="mt-4 pt-4 border-t border-gray-100">
-              <p className="text-sm text-gray-600">
-                We offer mobile training services that can be delivered directly 
-                to communities throughout Alberta.
-              </p>
+            <div className="h-64 w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214586.5026361585!2d-111.4962276!3d58.7170656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53b7d60e3a5163c1%3A0x9700f8a6a7c4b1d8!2sFort%20McMurray%2C%20AB!5e0!3m2!1sen!2sca!4v1620000000000!5m2!1sen!2sca"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                title="Dispatch Office Location"
+                className="rounded-b-xl"
+              ></iframe>
             </div>
           </div>
 
