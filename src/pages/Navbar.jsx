@@ -1,18 +1,51 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "../assets/images/logo.png";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isMobileDropdown, setIsMobileDropdown] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
+  const [mobileTrainingOpen, setMobileTrainingOpen] = useState(false);
+  const [programsDropdownOpen, setProgramsDropdownOpen] = useState(false);
+  const [trainingSubmenuOpen, setTrainingSubmenuOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const location = useLocation();
 
-  // Check if a path is active
-  const isActive = (path) => {
-    return location.pathname === path;
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setProgramsDropdownOpen(false);
+        setTrainingSubmenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Toggle Programs dropdown
+  const toggleProgramsDropdown = () => {
+    setProgramsDropdownOpen(!programsDropdownOpen);
+    if (programsDropdownOpen) {
+      setTrainingSubmenuOpen(false);
+    }
   };
+
+  // Toggle Training submenu
+  const toggleTrainingSubmenu = (e) => {
+    e.stopPropagation();
+    setTrainingSubmenuOpen(!trainingSubmenuOpen);
+  };
+
+  // Mobile menu handlers
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+  const toggleMobilePrograms = () => setMobileProgramsOpen(!mobileProgramsOpen);
+  const toggleMobileTraining = () => setMobileTrainingOpen(!mobileTrainingOpen);
+
+  // Check if path is active
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className="w-full bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
@@ -28,11 +61,11 @@ const Navbar = () => {
           {/* Mobile toggle */}
           <div className="md:hidden flex items-center">
             <button 
-              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              onClick={toggleMobileMenu}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-all"
             >
               <span className="sr-only">Open main menu</span>
-              {isMobileOpen ? (
+              {mobileMenuOpen ? (
                 <X size={24} className="block" />
               ) : (
                 <Menu size={24} className="block" />
@@ -64,58 +97,72 @@ const Navbar = () => {
               About Us
             </NavLink>
 
-            {/* Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsOpen(true)}
-              onMouseLeave={() => setIsOpen(false)}
-            >
-              <button 
-                className={`flex items-center px-3 py-2 text-sm font-medium group ${
-                  isActive('/programs') || isActive('/leadership') || isActive('/partnership') 
+            {/* Programs Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={toggleProgramsDropdown}
+                className={`flex items-center px-3 py-2 text-sm font-medium ${
+                  programsDropdownOpen || isActive('/programs') || isActive('/leadership') || isActive('/partnership')
                     ? 'text-indigo-600' 
                     : 'text-gray-700 hover:text-indigo-600'
                 }`}
               >
-                <span>Programs</span>
+                Programs
                 <ChevronDown
                   size={16}
                   className={`ml-1 transition-transform duration-200 ${
-                    isOpen ? "rotate-180 text-indigo-600" : "text-gray-500 group-hover:text-indigo-600"
+                    programsDropdownOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
 
-              {isOpen && (
-                <div className="absolute left-0 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-200">
+              {/* Dropdown Menu */}
+              {programsDropdownOpen && (
+                <div className="absolute left-0 mt-2 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="py-1">
-                    <NavLink
-                      to="/programs"
-                      className={({ isActive }) => 
-                        `block px-4 py-2 text-sm hover:bg-indigo-50 transition-colors ${
-                          isActive ? 'text-indigo-700 bg-indigo-50' : 'text-gray-700 hover:text-indigo-700'
-                        }`
-                      }
-                    >
-                      Training Programs
-                    </NavLink>
+                    {/* Training Programs with Submenu */}
+                    <div className="relative">
+                      <button
+                        onClick={toggleTrainingSubmenu}
+                        className={`flex justify-between w-full px-4 py-2 text-sm text-left ${
+                          trainingSubmenuOpen ? 'bg-indigo-50 text-indigo-700' : 'text-gray-700 hover:bg-indigo-50'
+                        }`}
+                      >
+                        Training Programs
+                        <ChevronDown
+                          size={16}
+                          className={`ml-1 transition-transform duration-200 ${
+                            trainingSubmenuOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+
+                      {/* Submenu */}
+                      {trainingSubmenuOpen && (
+                        <div className="absolute left-full top-0 ml-1 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                          <NavLink
+                            to="/programs/ai-ethics"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
+                            onClick={() => setProgramsDropdownOpen(false)}
+                          >
+                            AI Ethics & Goverance
+                          </NavLink>
+                          
+                        </div>
+                      )}
+                    </div>
+
                     <NavLink
                       to="/leadership"
-                      className={({ isActive }) => 
-                        `block px-4 py-2 text-sm hover:bg-indigo-50 transition-colors ${
-                          isActive ? 'text-indigo-700 bg-indigo-50' : 'text-gray-700 hover:text-indigo-700'
-                        }`
-                      }
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
+                      onClick={() => setProgramsDropdownOpen(false)}
                     >
                       Indigenous Leadership
                     </NavLink>
                     <NavLink
                       to="/partnership"
-                      className={({ isActive }) => 
-                        `block px-4 py-2 text-sm hover:bg-indigo-50 transition-colors ${
-                          isActive ? 'text-indigo-700 bg-indigo-50' : 'text-gray-700 hover:text-indigo-700'
-                        }`
-                      }
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
+                      onClick={() => setProgramsDropdownOpen(false)}
                     >
                       Partnerships
                     </NavLink>
@@ -124,7 +171,6 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* Blog Link */}
             <NavLink 
               to="/blog" 
               className={({ isActive }) => 
@@ -173,11 +219,11 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+      <div className={`md:hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white border-t border-gray-100">
           <NavLink
             to="/"
-            onClick={() => setIsMobileOpen(false)}
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
@@ -189,7 +235,7 @@ const Navbar = () => {
 
           <NavLink
             to="/about"
-            onClick={() => setIsMobileOpen(false)}
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
@@ -199,12 +245,12 @@ const Navbar = () => {
             About Us
           </NavLink>
 
-          {/* Mobile Dropdown */}
+          {/* Mobile Programs Dropdown */}
           <div>
             <button
-              onClick={() => setIsMobileDropdown(!isMobileDropdown)}
-              className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                isActive('/programs') || isActive('/leadership') || isActive('/partnership')
+              onClick={toggleMobilePrograms}
+              className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium ${
+                mobileProgramsOpen || isActive('/programs') || isActive('/leadership') || isActive('/partnership')
                   ? 'text-indigo-600 bg-indigo-50'
                   : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
               }`}
@@ -213,34 +259,47 @@ const Navbar = () => {
               <ChevronDown
                 size={16}
                 className={`transition-transform duration-200 ${
-                  isMobileDropdown ? "rotate-180" : ""
+                  mobileProgramsOpen ? "rotate-180" : ""
                 }`}
               />
             </button>
 
-            <div className={`pl-4 ${isMobileDropdown ? 'block' : 'hidden'}`}>
-              <NavLink
-                to="/programs"
-                onClick={() => {
-                  setIsMobileOpen(false);
-                  setIsMobileDropdown(false);
-                }}
-                className={({ isActive }) => 
-                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
-                  }`
-                }
-              >
-                Training Programs
-              </NavLink>
+            <div className={`pl-4 ${mobileProgramsOpen ? 'block' : 'hidden'}`}>
+              {/* Mobile Training Programs */}
+              <div>
+                <button
+                  onClick={toggleMobileTraining}
+                  className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium ${
+                    mobileTrainingOpen ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
+                  }`}
+                >
+                  Training Programs
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform duration-200 ${
+                      mobileTrainingOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <div className={`pl-4 ${mobileTrainingOpen ? 'block' : 'hidden'}`}>
+                 
+                  <NavLink
+                    to="/programs/ai-ethics"
+                    onClick={toggleMobileMenu}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50"
+                  >
+                    AI Ethics & Goverance
+                  </NavLink>
+                  
+                </div>
+              </div>
+
               <NavLink
                 to="/leadership"
-                onClick={() => {
-                  setIsMobileOpen(false);
-                  setIsMobileDropdown(false);
-                }}
+                onClick={toggleMobileMenu}
                 className={({ isActive }) => 
-                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  `block px-3 py-2 rounded-md text-base font-medium ${
                     isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
                   }`
                 }
@@ -249,12 +308,9 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 to="/partnership"
-                onClick={() => {
-                  setIsMobileOpen(false);
-                  setIsMobileDropdown(false);
-                }}
+                onClick={toggleMobileMenu}
                 className={({ isActive }) => 
-                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  `block px-3 py-2 rounded-md text-base font-medium ${
                     isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
                   }`
                 }
@@ -264,12 +320,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Blog Link for Mobile */}
           <NavLink
             to="/blog"
-            onClick={() => setIsMobileOpen(false)}
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
-              `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+              `block px-3 py-2 rounded-md text-base font-medium ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
               }`
             }
@@ -279,9 +334,9 @@ const Navbar = () => {
 
           <NavLink
             to="/register"
-            onClick={() => setIsMobileOpen(false)}
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
-              `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+              `block px-3 py-2 rounded-md text-base font-medium ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
               }`
             }
@@ -291,9 +346,9 @@ const Navbar = () => {
 
           <NavLink
             to="/contact"
-            onClick={() => setIsMobileOpen(false)}
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
-              `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+              `block px-3 py-2 rounded-md text-base font-medium ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
               }`
             }
@@ -303,9 +358,9 @@ const Navbar = () => {
 
           <NavLink
             to="/register"
-            onClick={() => setIsMobileOpen(false)}
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
-              `block w-full mt-2 px-4 py-2 rounded-md text-base font-medium text-center shadow-sm transition-colors ${
+              `block w-full mt-2 px-4 py-2 rounded-md text-base font-medium text-center ${
                 isActive ? 'bg-indigo-700 text-white' : 'bg-indigo-600 text-white hover:bg-indigo-700'
               }`
             }
