@@ -8,6 +8,7 @@ import Navbar from './pages/Navbar';
 import Register from './pages/Register';
 import ContactUs from './pages/ContactUs';
 import Blog from './pages/Blog';
+import AiEthics from './pages/minicomponents/AiEthics';
 import NotFound from './pages/NotFound';
 import Preloader from './pages/Preloader' // Import the Preloader component
 import AOS from 'aos';
@@ -64,6 +65,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/AiEthics" element={<AiEthics />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

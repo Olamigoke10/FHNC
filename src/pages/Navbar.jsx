@@ -141,7 +141,7 @@ const Navbar = () => {
                       {trainingSubmenuOpen && (
                         <div className="absolute left-full top-0 ml-1 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                           <NavLink
-                            to="/programs/ai-ethics"
+                            to="/AiEthics"
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
                             onClick={() => setProgramsDropdownOpen(false)}
                           >
