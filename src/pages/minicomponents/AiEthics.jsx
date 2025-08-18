@@ -43,7 +43,7 @@ const AiEthics = () => {
                 explainable, and compliant with global standards.
               </p>
 
-                <div className="my-5 text-slate-500 text-sm">
+                <div className="my-5 text-slate-500 text-sm space-y-5">
               <motion.div 
               className="flex items-center"
               variants={textVariants}

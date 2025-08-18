@@ -1,5 +1,5 @@
 import { ChevronDown, Menu, X } from "lucide-react";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/FHNCLOGO.png";
 import { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -54,7 +54,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <NavLink to="/" className="flex items-center">
-              <img src={logo} alt="Logo" className="h-12 w-auto" />
+              <img src={logo} alt="Logo" className="h-auto w-40" />
             </NavLink>
           </div>
 
