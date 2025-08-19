@@ -3,8 +3,8 @@ import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail } from 'luc
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gray-900 text-white pt-16 pb-8 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           
           {/* Logo and Description */}
@@ -47,13 +47,19 @@ const Footer = () => {
 
           {/* Programs */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Our Programs</h3>
+            <h3 className="text-lg font-semibold mb-4">Foundations Of Ethical AI</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Class 3 Driver Training</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Class 5 Driver Training</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Air Brakes Certification</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Defensive Driving Course</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Logbook & Compliance</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Governance & Lifecycle Management
+</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Bias, Fairness & Explainability
+</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Bias, Fairness & Explainability</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Risk Assessment & Monitoring
+</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Policy Design & Stakeholder Engagement
+</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Case Study
+</a></li>
             </ul>
           </div>
 

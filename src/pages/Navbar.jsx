@@ -1,14 +1,12 @@
 import { ChevronDown, Menu, X } from "lucide-react";
-import logo from "../assets/images/FHNCLOGO.png";
+import logo from "../assets/logos/fhnclogo.png";
 import { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
   const [mobileTrainingOpen, setMobileTrainingOpen] = useState(false);
-  const [programsDropdownOpen, setProgramsDropdownOpen] = useState(false);
-  const [trainingSubmenuOpen, setTrainingSubmenuOpen] = useState(false);
+  const [trainingDropdownOpen, setTrainingDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const location = useLocation();
 
@@ -16,8 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setProgramsDropdownOpen(false);
-        setTrainingSubmenuOpen(false);
+        setTrainingDropdownOpen(false);
       }
     };
 
@@ -28,45 +25,54 @@ const Navbar = () => {
   // Close mobile menu when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
-    setMobileProgramsOpen(false);
     setMobileTrainingOpen(false);
   }, [location]);
 
-  // Toggle Programs dropdown
-  const toggleProgramsDropdown = () => {
-    setProgramsDropdownOpen(!programsDropdownOpen);
-    setTrainingSubmenuOpen(false);
-  };
-
-  // Toggle Training submenu
-  const toggleTrainingSubmenu = (e) => {
-    e.stopPropagation();
-    setTrainingSubmenuOpen(!trainingSubmenuOpen);
+  // Toggle Training dropdown
+  const toggleTrainingDropdown = () => {
+    setTrainingDropdownOpen(!trainingDropdownOpen);
   };
 
   // Mobile menu handlers
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
-  const toggleMobilePrograms = () => setMobileProgramsOpen(!mobileProgramsOpen);
   const toggleMobileTraining = () => setMobileTrainingOpen(!mobileTrainingOpen);
+
+  // Check if path is active
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className="w-full bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <NavLink to="/" className="flex items-center">
-              <img src={logo} alt="Logo" className="h-auto w-28 md:w-40" />
+              <img src={logo} alt="Logo" className="w-60 md:w-72 font-extrabold" />
             </NavLink>
           </div>
 
+          {/* Mobile toggle */}
+          <div className="md:hidden flex items-center">
+            <button 
+              onClick={toggleMobileMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-all"
+            >
+              <span className="sr-only">Open main menu</span>
+              {mobileMenuOpen ? (
+                <X size={24} className="block" />
+              ) : (
+                <Menu size={24} className="block" />
+              )}
+            </button>
+          </div>
+
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             <NavLink 
               to="/" 
               className={({ isActive }) => 
-                `px-2 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1rem)] hover:after:left-2 after:transition-all after:duration-300 ${
-                  isActive ? 'text-indigo-600 after:w-[calc(100%-1rem)] after:left-2' : 'text-gray-700 hover:text-indigo-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
                 }`
               }
             >
@@ -76,79 +82,55 @@ const Navbar = () => {
             <NavLink 
               to="/about" 
               className={({ isActive }) => 
-                `px-2 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1rem)] hover:after:left-2 after:transition-all after:duration-300 ${
-                  isActive ? 'text-indigo-600 after:w-[calc(100%-1rem)] after:left-2' : 'text-gray-700 hover:text-indigo-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
                 }`
               }
             >
               About Us
             </NavLink>
 
-            {/* Programs Dropdown */}
+            {/* Training Programs Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
-                onClick={toggleProgramsDropdown}
-                className={`flex items-center px-2 py-2 text-sm font-medium ${
-                  programsDropdownOpen || location.pathname.includes('/programs') || location.pathname.includes('/leadership') || location.pathname.includes('/partnership')
+                onClick={toggleTrainingDropdown}
+                className={`flex items-center px-3 py-2 text-sm font-medium ${
+                  trainingDropdownOpen || isActive('/AiEthics') || isActive('/leadership') || isActive('/partnership')
                     ? 'text-indigo-600' 
                     : 'text-gray-700 hover:text-indigo-600'
                 }`}
               >
-                Programs
+                Training Programs
                 <ChevronDown
                   size={16}
                   className={`ml-1 transition-transform duration-200 ${
-                    programsDropdownOpen ? "rotate-180" : ""
+                    trainingDropdownOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
 
               {/* Dropdown Menu */}
-              {programsDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+              {trainingDropdownOpen && (
+                <div className="absolute left-0 mt-2 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="py-1">
-                    {/* Training Programs with Submenu */}
-                    <div className="relative">
-                      <button
-                        onClick={toggleTrainingSubmenu}
-                        className={`flex justify-between w-full px-4 py-2 text-sm text-left ${
-                          trainingSubmenuOpen ? 'bg-indigo-50 text-indigo-700' : 'text-gray-700 hover:bg-indigo-50'
-                        }`}
-                      >
-                        Training Programs
-                        <ChevronDown
-                          size={16}
-                          className={`ml-1 transition-transform duration-200 ${
-                            trainingSubmenuOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-
-                      {/* Submenu */}
-                      {trainingSubmenuOpen && (
-                        <div className="absolute left-full top-0 ml-1 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-50">
-                          <NavLink
-                            to="/AiEthics"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
-                            onClick={() => setProgramsDropdownOpen(false)}
-                          >
-                            AI Ethics & Governance
-                          </NavLink>
-                        </div>
-                      )}
-                    </div>
-
+                    <NavLink
+                      to="/AiEthics"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
+                      onClick={() => setTrainingDropdownOpen(false)}
+                    >
+                      AI Ethics & Governance
+                    </NavLink>
                     <NavLink
                       to="/leadership"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
-                      onClick={() => setProgramsDropdownOpen(false)}
+                      onClick={() => setTrainingDropdownOpen(false)}
                     >
                       Indigenous Leadership
                     </NavLink>
                     <NavLink
                       to="/partnership"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
-                      onClick={() => setProgramsDropdownOpen(false)}
+                      onClick={() => setTrainingDropdownOpen(false)}
                     >
                       Partnerships
                     </NavLink>
@@ -160,8 +142,8 @@ const Navbar = () => {
             <NavLink 
               to="/blog" 
               className={({ isActive }) => 
-                `px-2 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1rem)] hover:after:left-2 after:transition-all after:duration-300 ${
-                  isActive ? 'text-indigo-600 after:w-[calc(100%-1rem)] after:left-2' : 'text-gray-700 hover:text-indigo-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
                 }`
               }
             >
@@ -171,8 +153,8 @@ const Navbar = () => {
             <NavLink 
               to="/register" 
               className={({ isActive }) => 
-                `px-2 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1rem)] hover:after:left-2 after:transition-all after:duration-300 ${
-                  isActive ? 'text-indigo-600 after:w-[calc(100%-1rem)] after:left-2' : 'text-gray-700 hover:text-indigo-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
                 }`
               }
             >
@@ -182,8 +164,8 @@ const Navbar = () => {
             <NavLink 
               to="/contact" 
               className={({ isActive }) => 
-                `px-2 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1rem)] hover:after:left-2 after:transition-all after:duration-300 ${
-                  isActive ? 'text-indigo-600 after:w-[calc(100%-1rem)] after:left-2' : 'text-gray-700 hover:text-indigo-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-indigo-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-indigo-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-indigo-600'
                 }`
               }
             >
@@ -193,7 +175,7 @@ const Navbar = () => {
             <NavLink
               to="/register"
               className={({ isActive }) => 
-                `ml-2 px-3 py-2 rounded-md text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 ${
+                `ml-4 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 ${
                   isActive ? 'bg-indigo-700 text-white' : 'bg-indigo-600 text-white hover:bg-indigo-700'
                 }`
               }
@@ -201,34 +183,15 @@ const Navbar = () => {
               Join Now
             </NavLink>
           </nav>
-
-          {/* Mobile toggle */}
-          <div className="md:hidden flex items-center">
-            <button 
-              onClick={toggleMobileMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-all"
-              aria-expanded={mobileMenuOpen}
-            >
-              <span className="sr-only">Open main menu</span>
-              {mobileMenuOpen ? (
-                <X size={24} className="block" />
-              ) : (
-                <Menu size={24} className="block" />
-              )}
-            </button>
-          </div>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      <div 
-        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-          mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
+      <div className={`md:hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white border-t border-gray-100">
           <NavLink
             to="/"
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
@@ -240,6 +203,7 @@ const Navbar = () => {
 
           <NavLink
             to="/about"
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
@@ -249,59 +213,40 @@ const Navbar = () => {
             About Us
           </NavLink>
 
-          {/* Mobile Programs Dropdown */}
+          {/* Mobile Training Programs Dropdown */}
           <div>
             <button
-              onClick={toggleMobilePrograms}
+              onClick={toggleMobileTraining}
               className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium ${
-                mobileProgramsOpen || location.pathname.includes('/programs') || location.pathname.includes('/leadership') || location.pathname.includes('/partnership')
+                mobileTrainingOpen || isActive('/AiEthics') || isActive('/leadership') || isActive('/partnership')
                   ? 'text-indigo-600 bg-indigo-50'
                   : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
               }`}
             >
-              <span>Programs</span>
+              <span>Training Programs</span>
               <ChevronDown
                 size={16}
                 className={`transition-transform duration-200 ${
-                  mobileProgramsOpen ? "rotate-180" : ""
+                  mobileTrainingOpen ? "rotate-180" : ""
                 }`}
               />
             </button>
 
-            <div className={`pl-4 ${mobileProgramsOpen ? 'block' : 'hidden'}`}>
-              {/* Mobile Training Programs */}
-              <div>
-                <button
-                  onClick={toggleMobileTraining}
-                  className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium ${
-                    mobileTrainingOpen ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
-                  }`}
-                >
-                  Training Programs
-                  <ChevronDown
-                    size={16}
-                    className={`transition-transform duration-200 ${
-                      mobileTrainingOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                <div className={`pl-4 ${mobileTrainingOpen ? 'block' : 'hidden'}`}>
-                  <NavLink
-                    to="/AiEthics"
-                    className={({ isActive }) => 
-                      `block px-3 py-2 rounded-md text-base font-medium ${
-                        isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
-                      }`
-                    }
-                  >
-                    AI Ethics & Governance
-                  </NavLink>
-                </div>
-              </div>
-
+            <div className={`pl-4 ${mobileTrainingOpen ? 'block' : 'hidden'}`}>
+              <NavLink
+                to="/AiEthics"
+                onClick={toggleMobileMenu}
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium ${
+                    isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
+                  }`
+                }
+              >
+                AI Ethics & Governance
+              </NavLink>
               <NavLink
                 to="/leadership"
+                onClick={toggleMobileMenu}
                 className={({ isActive }) => 
                   `block px-3 py-2 rounded-md text-base font-medium ${
                     isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
@@ -312,6 +257,7 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 to="/partnership"
+                onClick={toggleMobileMenu}
                 className={({ isActive }) => 
                   `block px-3 py-2 rounded-md text-base font-medium ${
                     isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
@@ -325,6 +271,7 @@ const Navbar = () => {
 
           <NavLink
             to="/blog"
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
@@ -336,6 +283,7 @@ const Navbar = () => {
 
           <NavLink
             to="/register"
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
@@ -347,6 +295,7 @@ const Navbar = () => {
 
           <NavLink
             to="/contact"
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium ${
                 isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
@@ -358,6 +307,7 @@ const Navbar = () => {
 
           <NavLink
             to="/register"
+            onClick={toggleMobileMenu}
             className={({ isActive }) => 
               `block w-full mt-2 px-4 py-2 rounded-md text-base font-medium text-center ${
                 isActive ? 'bg-indigo-700 text-white' : 'bg-indigo-600 text-white hover:bg-indigo-700'
