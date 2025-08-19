@@ -53,12 +53,10 @@ const Footer = () => {
 </a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Bias, Fairness & Explainability
 </a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Bias, Fairness & Explainability</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Regulation & Compliance</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Risk Assessment & Monitoring
 </a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Policy Design & Stakeholder Engagement
-</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Case Study
 </a></li>
             </ul>
           </div>
@@ -70,9 +68,9 @@ const Footer = () => {
               <div className="flex items-start">
                 <MapPin className="flex-shrink-0 mt-1 mr-3 text-blue-400" size={18} />
                 <address className="text-gray-400 not-italic">
-                  123 Training Road<br />
-                  First Nations Territory<br />
-                  Province, Postal Code
+                  Building 57, <br />
+                  Alison Bay Fort Chipewyan<br />
+                  TOP101 <br />
                 </address>
               </div>
               <div className="flex items-center">

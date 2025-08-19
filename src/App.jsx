@@ -14,6 +14,7 @@ import Preloader from './pages/Preloader' // Import the Preloader component
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import Footer from './pages/Footer';
+import DriverTraining from './pages/minicomponents/DriverTraining';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -66,6 +67,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/AiEthics" element={<AiEthics />} />
+          <Route path="/DriverTraining" element={<DriverTraining />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

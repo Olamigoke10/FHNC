@@ -121,6 +121,13 @@ const Navbar = () => {
                       AI Ethics & Governance
                     </NavLink>
                     <NavLink
+                      to="/DriverTraining"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
+                      onClick={() => setTrainingDropdownOpen(false)}
+                    >
+                      Driving Training
+                    </NavLink>
+                    <NavLink
                       to="/leadership"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
                       onClick={() => setTrainingDropdownOpen(false)}
