@@ -80,7 +80,7 @@ const DriverTraining = () => {
                 href="#contact" 
                 className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors"
               >
-                Learn about partnership opportunities
+                Register Here
                 <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
@@ -88,17 +88,8 @@ const DriverTraining = () => {
         ))}
       </div>
 
-      {/* CTA Section */}
-      <div className="mt-16 text-center">
-        <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-8 sm:p-10 inline-block max-w-4xl">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to partner with us?</h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Whether you're an employer looking for skilled drivers or a community seeking training solutions, we'd love to discuss how we can work together.
-          </p>
-          <button className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300">
-            Contact Our Partnership Team
-          </button>
-        </div>
+      <div className="">
+
       </div>
     </section>
   );
