@@ -13,6 +13,11 @@ export default {
       },
     },
   },
+  safelist: [
+    'blob-1',
+    'blob-2',
+    'blob-3',
+  ],
   plugins: [],
 }
 
