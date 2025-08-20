@@ -129,7 +129,7 @@ const ContactUs = () => {
                       className="text-gray-700 hover:text-blue-600 transition-colors break-words"
                       style={{ wordBreak: "break-all" }}
                     >
-                      operations@firstnationcontracting.biz
+                      info@firstnationcontracting.biz
                     </a>
                   </div>
                 </div>
