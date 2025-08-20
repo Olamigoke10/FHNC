@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import homepage from "../assets/images/Homepage.png";
 import { FaUsers, FaChalkboardTeacher, FaCogs, FaShieldAlt, FaLaptop, FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import AiEthicsPreview from "./minicomponents/AiEthicsPreview";
+import DriverTrainingPreview from "./minicomponents/DriverTrainingPreview";
 
 // Animation variants
 const containerVariants = {
@@ -324,6 +326,12 @@ const Home = () => {
       </div>
 
       {/* ... (previous carousel/grid section code) ... */}
+
+      {/* AI ethics preview */}
+      <AiEthicsPreview />
+
+      {/* Driver Training Preview */}
+      <DriverTrainingPreview />
 
 {/* Get Started Today! CTA Section */}
 <motion.div 
