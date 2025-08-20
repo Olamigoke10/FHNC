@@ -36,12 +36,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-              <li><a href="#programs" className="text-gray-400 hover:text-white transition-colors">Programs</a></li>
-              <li><a href="#about" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#leadership" className="text-gray-400 hover:text-white transition-colors">Leadership</a></li>
-              <li><a href="#register" className="text-gray-400 hover:text-white transition-colors">Registration</a></li>
-              <li><a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
+              <li><a href="/leadership" className="text-gray-400 hover:text-white transition-colors">Programs</a></li>
+              <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+              {/* <li><a href="/leadership" className="text-gray-400 hover:text-white transition-colors">Leadership</a></li> */}
+              <li><a href="/register" className="text-gray-400 hover:text-white transition-colors">Registration</a></li>
+              <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
 

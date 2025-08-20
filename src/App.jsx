@@ -15,6 +15,7 @@ import AOS from 'aos';
 import "aos/dist/aos.css";
 import Footer from './pages/Footer';
 import DriverTraining from './pages/minicomponents/DriverTraining';
+import Leadership from './pages/Leadership';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,7 +63,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
-          <Route path="/partnership" element={<Partnership />} />
+          <Route path="/leadership" element={<Leadership />} />
+          {/* <Route path="/partnership" element={<Partnership />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/blog" element={<Blog />} />
