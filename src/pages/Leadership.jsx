@@ -5,8 +5,8 @@ import { Handshake, Globe, Images, Recycle, ChevronRight } from "lucide-react";
 const Leadership = () => {
   const trainingPrograms = [
     {
-      title: "Defensive Driving Course",
-      description: "Our defensive driving programme goes beyond basic skills to teach proactive accident prevention techniques. This course emphasises hazard recognition, proper vehicle control, environmental considerations, and psychological factors affecting driver performance.",
+      title: "Driving Course",
+      description: "Our driving programme goes beyond basic skills to teach proactive accident prevention techniques. This course emphasises hazard recognition, proper vehicle control, environmental considerations, and psychological factors affecting driver performance.",
       highlight: "Reduces risk and improves safety in any condition"
     },
     {
