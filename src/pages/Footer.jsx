@@ -91,7 +91,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <Mail className="flex-shrink-0 mr-3 text-blue-400" size={18} />
-                <a href="mailto:info@firstnationcontraction.biz" className="text-gray-400 hover:text-white transition-colors">info@firstnationcontracting.biz</a>
+                <a href="mailto:info@firstnationcontraction.biz" className="text-gray-400 hover:text-white transition-colors">operations@firstnationcontracting.biz</a>
               </div>
             </div>
           </div>
@@ -103,7 +103,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} First Nations Highway Consortium. All rights reserved.
+            © {new Date().getFullYear()} First Nations Horizon Contracting. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0 text-sm">
             <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
