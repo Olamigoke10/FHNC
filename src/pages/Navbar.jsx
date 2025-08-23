@@ -179,7 +179,7 @@ const Navbar = () => {
               Contact
             </NavLink>
 
-            <NavLink
+            {/* <NavLink
               to="/register"
               className={({ isActive }) => 
                 `ml-4 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 ${
@@ -188,7 +188,7 @@ const Navbar = () => {
               }
             >
               Join Now
-            </NavLink>
+            </NavLink> */}
           </nav>
         </div>
       </div>
@@ -263,6 +263,18 @@ const Navbar = () => {
                 Indigenous Leadership
               </NavLink>
               <NavLink
+                to="/DriverTraining"
+                onClick={toggleMobileMenu}
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium ${
+                    isActive ? 'text-indigo-600 bg-indigo-50' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
+                  }`
+                }
+              >
+                Driving Training
+              </NavLink>
+              
+              {/* <NavLink
                 to="/partnership"
                 onClick={toggleMobileMenu}
                 className={({ isActive }) => 
@@ -272,7 +284,7 @@ const Navbar = () => {
                 }
               >
                 Partnerships
-              </NavLink>
+              </NavLink> */}
             </div>
           </div>
 
@@ -312,7 +324,7 @@ const Navbar = () => {
             Contact
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/register"
             onClick={toggleMobileMenu}
             className={({ isActive }) => 
@@ -322,7 +334,7 @@ const Navbar = () => {
             }
           >
             Join Now
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
     </header>

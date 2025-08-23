@@ -46,20 +46,20 @@ const Register = () => {
         "Complete a quick assessment to confirm you meet the requirements including licence status and experience.",
       color: "border-blue-500",
     },
-    {
-      icon: <Upload size={20} className="text-indigo-500" />,
-      title: "Document Upload",
-      description:
-        "Securely submit identification, licences, and any prerequisite certifications.",
-      color: "border-indigo-400",
-    },
-    {
-      icon: <CreditCard size={20} className="text-red-500" />,
-      title: "Payment Option",
-      description:
-        "Choose from multiple methods including Indigenous funding support.",
-      color: "border-red-500",
-    },
+    // {
+    //   icon: <Upload size={20} className="text-indigo-500" />,
+    //   title: "Document Upload",
+    //   description:
+    //     "Securely submit identification, licences, and any prerequisite certifications.",
+    //   color: "border-indigo-400",
+    // },
+    // {
+    //   icon: <CreditCard size={20} className="text-red-500" />,
+    //   title: "Payment Option",
+    //   description:
+    //     "Choose from multiple methods including Indigenous funding support.",
+    //   color: "border-red-500",
+    // },
   ];
 
   return (
@@ -129,7 +129,7 @@ const Register = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+          {/* <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
             <div className="flex items-center gap-3 mb-4">
               <Calendar size={24} className="text-blue-600" />
               <h3 className="text-xl font-bold text-blue-800">
@@ -163,7 +163,8 @@ const Register = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
+
         </div>
       </div>
 
@@ -254,7 +255,7 @@ const Register = () => {
                   Need Immediate Assistance?
                 </h3>
                 <p className="text-blue-100">
-                  Call our support team at (123) 456-7890
+                  Call our support team at <a href="">780-804-0718</a>
                 </p>
               </div>
             </div>
