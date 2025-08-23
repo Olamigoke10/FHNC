@@ -96,7 +96,7 @@ const Leadership = () => {
               available with special rates.
             </p>
             <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              <a href="">Register for our Programs</a>
+              <a href="/register">Register for our Programs</a>
             </button>
           </div>
         </div>

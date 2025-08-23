@@ -154,22 +154,24 @@ const Home = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             variants={containerVariants}
           >
+            <a href="/contact">
             <motion.button 
               type="button" 
               className="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg text-white font-medium shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group"
               variants={buttonVariants}
             >
-              Enrol Now
+              Contact Us
               <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
             </motion.button>
+            </a>
             
-            <motion.button 
+            {/* <motion.button 
               type="button" 
               className="px-8 py-3.5 border-2 border-blue-500 rounded-lg text-blue-600 font-medium hover:bg-blue-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               variants={buttonVariants}
             >
               Explore Our Courses
-            </motion.button>
+            </motion.button> */}
           </motion.div>
 
           {/* Trust indicators */}
@@ -359,6 +361,7 @@ const Home = () => {
     className="flex flex-col sm:flex-row gap-4 justify-center"
     variants={containerVariants}
   >
+    <a href="/contact">
     <motion.button 
       type="button" 
       className="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg text-white font-medium shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group"
@@ -367,14 +370,15 @@ const Home = () => {
       Contact Us
       <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
     </motion.button>
+    </a>
     
-    <motion.button 
+    {/* <motion.button 
       type="button" 
       className="px-8 py-3.5 border-2 border-blue-500 rounded-lg text-blue-600 font-medium hover:bg-blue-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       variants={buttonVariants}
     >
       Request Proposal
-    </motion.button>
+    </motion.button> */}
   </motion.div>
 </motion.div>
 

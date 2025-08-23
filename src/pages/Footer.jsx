@@ -64,11 +64,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Driver Training Courses</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Class 3 Driver Training
+              <li><a href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 3 Driver Training
 </a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Class 5 Driver Training
+              <li><a href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 5 Driver Training
 </a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Air Brakes Certification</a></li>
+              <li><a href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Air Brakes Certification</a></li>
 
             </ul>
           </div>

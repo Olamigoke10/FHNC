@@ -70,7 +70,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/AiEthics" element={<AiEthics />} />
           <Route path="/DriverTraining" element={<DriverTraining />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
