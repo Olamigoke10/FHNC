@@ -1,5 +1,5 @@
 import logo from "../assets/images/logo.png";
-import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Link } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -36,12 +36,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-              <li><a href="/leadership" className="text-gray-400 hover:text-white transition-colors">Programs</a></li>
-              <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
+              <li><Link href="/leadership" className="text-gray-400 hover:text-white transition-colors">Programs</Link></li>
+              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
               {/* <li><a href="/leadership" className="text-gray-400 hover:text-white transition-colors">Leadership</a></li> */}
-              <li><a href="/register" className="text-gray-400 hover:text-white transition-colors">Registration</a></li>
-              <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+              <li><Link href="/register" className="text-gray-400 hover:text-white transition-colors">Registration</Link></li>
+              <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -64,11 +64,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Driver Training Courses</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 3 Driver Training
-</a></li>
-              <li><a href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 5 Driver Training
-</a></li>
-              <li><a href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Air Brakes Certification</a></li>
+              <li><Link href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 3 Driver Training
+</Link></li>
+              <li><Link href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 5 Driver Training
+</Link></li>
+              <li><Link href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Air Brakes Certification</Link></li>
 
             </ul>
           </div>
