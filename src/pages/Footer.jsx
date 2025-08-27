@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Link } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -36,12 +37,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/leadership" className="text-gray-400 hover:text-white transition-colors">Programs</Link></li>
-              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
-              {/* <li><a href="/leadership" className="text-gray-400 hover:text-white transition-colors">Leadership</a></li> */}
-              <li><Link href="/register" className="text-gray-400 hover:text-white transition-colors">Registration</Link></li>
-              <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
+              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/leadership" className="text-gray-400 hover:text-white transition-colors">Programs</Link></li>
+              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+              <li><Link to="/register" className="text-gray-400 hover:text-white transition-colors">Registration</Link></li>
+              <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -49,27 +49,21 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Courses</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Governance & Lifecycle Management
-</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Bias, Fairness & Explainability
-</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Governance & Lifecycle Management</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Bias, Fairness & Explainability</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Regulation & Compliance</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Risk Assessment & Monitoring
-</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Policy Design & Stakeholder Engagement
-</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Risk Assessment & Monitoring</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Policy Design & Stakeholder Engagement</a></li>
             </ul>
           </div>
 
+          {/* Driver Training Courses */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Driver Training Courses</h3>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 3 Driver Training
-</Link></li>
-              <li><Link href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 5 Driver Training
-</Link></li>
-              <li><Link href="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Air Brakes Certification</Link></li>
-
+              <li><Link to="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 3 Driver Training</Link></li>
+              <li><Link to="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Class 5 Driver Training</Link></li>
+              <li><Link to="/DriverTraining" className="text-gray-400 hover:text-white transition-colors">Air Brakes Certification</Link></li>
             </ul>
           </div>
 

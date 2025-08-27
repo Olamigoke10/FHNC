@@ -4,6 +4,7 @@ import homepage from "../assets/images/Homepage.png";
 import { FaUsers, FaChalkboardTeacher, FaCogs, FaShieldAlt, FaLaptop, FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import AiEthicsPreview from "./minicomponents/AiEthicsPreview";
 import DriverTrainingPreview from "./minicomponents/DriverTrainingPreview";
+import { Link } from "react-router-dom";
 
 // Animation variants
 const containerVariants = {

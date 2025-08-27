@@ -1,6 +1,12 @@
 import React from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+
+gsap.registerPlugin(SplitText, ScrambleTextPlugin);
 
 import Img1 from "../../assets/images/Leadership.png";
 import Img2 from "../../assets/images/Leadership.png";
@@ -25,6 +31,70 @@ const listItemVariants = {
       duration: 0.5
     }
   })
+};
+
+// Moved ScrambledText component outside of AiEthics
+const ScrambledText = ({
+  radius = 100,
+  duration = 1.2,
+  speed = 0.5,
+  scrambleChars = ".:",
+  className = "",
+  style = {},
+  children,
+}) => {
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    if (!rootRef.current) return;
+
+    const split = SplitText.create(rootRef.current, {
+      type: "chars",
+      charsClass: "inline-block will-change-transform",
+    });
+
+    split.chars.forEach((el) => {
+      const c = el;
+      gsap.set(c, { attr: { "data-content": c.innerHTML } });
+    });
+
+    const handleMove = (e) => {
+      split.chars.forEach((el) => {
+        const c = el;
+        const { left, top, width, height } = c.getBoundingClientRect();
+        const dx = e.clientX - (left + width / 2);
+        const dy = e.clientY - (top + height / 2);
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < radius) {
+          gsap.to(c, {
+            overwrite: true,
+            duration: duration * (1 - dist / radius),
+            scrambleText: {
+              text: c.dataset.content || "",
+              chars: scrambleChars,
+              speed,
+            },
+            ease: "none",
+          });
+        }
+      });
+    };
+
+    const el = rootRef.current;
+    el.addEventListener("pointermove", handleMove);
+
+    return () => {
+      el.removeEventListener("pointermove", handleMove);
+      split.revert();
+    };
+  }, [radius, duration, speed, scrambleChars]);
+
+  return (
+    <div ref={rootRef} className={className} style={style}>
+      {children}
+    </div>
+  );
 };
 
 const AiEthics = () => {
@@ -178,6 +248,37 @@ const AiEthics = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      <motion.div className="mt-20">
+        <div className="text-center">
+          <motion.div 
+            className="inline-flex items-center gap-3 mb-4 md:mb-6 "
+            variants={textVariants}
+          >
+            <div className="w-2 h-6 md:h-8 bg-gradient-to-b from-blue-600 to-blue-400 rounded-full"></div>
+            <span className="text-xs sm:text-sm font-semibold tracking-wider text-blue-600 uppercase">
+              Why AI Ethics & Governance Matters
+            </span>
+          </motion.div>
+
+          <div className="bg-slate-100 p-10 space-y-4 rounded-md">
+            <ScrambledText className="mb-4">
+              <p>
+                Ethics and compliance culture training matters because it gives employees clear guidance on what's expected of them and how to handle challenging situations without crossing ethical or legal lines. 
+                It builds trust and creates a sense of safety, where people feel comfortable speaking up, sharing ideas, and raising concerns. 
+                This kind of training strengthens decision-making, helping employees think through the consequences of their actions and avoid costly mistakes. It also improves teamwork by fostering shared values and reducing conflicts, 
+                while boosting career confidence as employees feel more capable, professional, and prepared to grow in their roles. 
+              </p>
+            </ScrambledText>
+
+            <ScrambledText>
+              AI now influences hiring, lending, healthcare, marketing and public services. Organisations that lack robust governance could face regulatory fines, reputational damage and real-world harm to customers.
+              This programme teaches you how to balance innovation with accountability, so technology delivers value without compromising ethics. 
+              FHNC AI Ethics & Governance Training Program equips businesses and individuals with the tools, knowledge, and frameworks to harness AI responsibly, ethically, and effectively.
+            </ScrambledText>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
