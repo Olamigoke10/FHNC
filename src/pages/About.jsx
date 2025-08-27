@@ -28,7 +28,7 @@ const About = () => {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              Indigenous-Led <span className="text-blue-600">Excellence</span> in Workforce Development
+               <span className="text-blue-600">Excellence</span> in Workforce Development
             </h2>
           </div>
 
