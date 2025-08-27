@@ -11,6 +11,8 @@ gsap.registerPlugin(SplitText, ScrambleTextPlugin);
 import Img1 from "../../assets/images/Leadership.png";
 import Img2 from "../../assets/images/Leadership.png";
 import Img3 from "../../assets/images/Leadership.png";
+import AiLearn from "./small/AiLearn";
+import AiWho from "./small/AiWho";
 
 const textVariants = {
   hidden: { y: 20, opacity: 0 },
@@ -249,8 +251,8 @@ const AiEthics = () => {
         </motion.div>
       </div>
 
-      <motion.div className="mt-20">
-        <div className="text-center">
+      {/* <motion.div className="mt-20">
+        <div className="text-center ">
           <motion.div 
             className="inline-flex items-center gap-3 mb-4 md:mb-6 "
             variants={textVariants}
@@ -261,7 +263,7 @@ const AiEthics = () => {
             </span>
           </motion.div>
 
-          <div className="bg-slate-100 p-10 space-y-4 rounded-md">
+          <div className="bg-slate-100 py-20 px-10 space-y-6 rounded-md text-xs text-start md:text-center">
             <ScrambledText className="mb-4">
               <p>
                 Ethics and compliance culture training matters because it gives employees clear guidance on what's expected of them and how to handle challenging situations without crossing ethical or legal lines. 
@@ -278,7 +280,12 @@ const AiEthics = () => {
             </ScrambledText>
           </div>
         </div>
-      </motion.div>
+      </motion.div> */}
+
+
+      <AiLearn />
+      <AiWho />
+      
     </div>
   );
 };
