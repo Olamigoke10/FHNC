@@ -3,19 +3,20 @@ import whoAI from "../../../assets/images/whoAi.png";
 import { Check, Users, Briefcase, Globe, Target } from "lucide-react";
 import { motion } from "framer-motion";
 
-const AiWho = () => {
+const AiCharity = () => {
   const Traning = [
-    "The business impact of AI and how it affects growth, efficiency, and trust.",
-    "The environmental costs of AI, including energy use and sustainability challenges.",
-    "The social impacts of AI, such as bias, fairness, and human rights concerns.",
+    "Understand the social and environmental impacts of AI",
+    "Explore how AI can (and cannot) support your mission and services",
+    "Build confidence to procure, commission, or work with AI responsibly",
+    "Make decisions that balance innovation with fairness, transparency, and compliance"
   ];
 
 
   const Learning = [
-    "A practical introduction to how AI systems work",
-    "An understanding of the environmental impacts of AI",
-    "Insights into AI’s social impacts on people, work, and communities",
-    "An overview of the AI policy and regulatory landscape (AI Act, GDPR, Human Rights frameworks, etc.)"
+    "A clear understanding of how AI systems work",
+    " Insights into the social impacts of AI on communities and services",
+    "An introduction to the use of AI in public service delivery",
+    "An understanding of the environmental impacts of AI"
   ]
 
   const targetAudience = [
@@ -85,7 +86,7 @@ const AiWho = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
         >
-          Designed for Professionals Navigating AI Transformation
+          AI Impacts Training for Charities and the Public Sector
         </motion.h2>
 
         <motion.p 
@@ -95,9 +96,9 @@ const AiWho = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          For freelancers, business leaders, industry professionals, civil
-          society organisations, and government employees who want to understand
-          how AI impacts their work and decision-making.
+          For charities, NGOs, public sector organisations, 
+          and government employees who want to understand how Artificial Intelligence (AI) is shaping service delivery, 
+          decision-making, and social outcomes.
         </motion.p>
       </motion.div>
 
@@ -149,8 +150,9 @@ const AiWho = () => {
             ))}
           </motion.div>
           <p className="mt-14 text-slate-600">
-            By understanding these issues, you will be better equipped to make informed business decisions, 
-            manage risks, and build strategies that align with both compliance requirements and responsible innovation.
+            No technical expertise required. 
+            This course is for anyone starting their AI literacy journey or looking to strengthen their understanding of how AI affects charities,
+             communities, and the public sector
           </p>
         </motion.div>
 
@@ -251,4 +253,4 @@ const AiWho = () => {
   );
 };
 
-export default AiWho;
+export default AiCharity;

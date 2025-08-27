@@ -13,6 +13,7 @@ import Img2 from "../../assets/images/Leadership.png";
 import Img3 from "../../assets/images/Leadership.png";
 import AiLearn from "./small/AiLearn";
 import AiWho from "./small/AiWho";
+import AiCharity from "./small/AiCharity";
 
 const textVariants = {
   hidden: { y: 20, opacity: 0 },
@@ -285,6 +286,7 @@ const AiEthics = () => {
 
       <AiLearn />
       <AiWho />
+      <AiCharity />
       
     </div>
   );
