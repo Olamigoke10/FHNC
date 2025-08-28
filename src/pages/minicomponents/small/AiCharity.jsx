@@ -1,7 +1,9 @@
 import React from "react";
 import whoAI from "../../../assets/images/whoAi.png";
-import { Check, Users, Briefcase, Globe, Target } from "lucide-react";
+import { Check, Users, Briefcase, Globe, Target, HelpingHandIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { FcOrganization } from "react-icons/fc";
+import { CgOrganisation } from "react-icons/cg";
 
 const AiCharity = () => {
   const Traning = [
@@ -21,18 +23,18 @@ const AiCharity = () => {
 
   const targetAudience = [
     {
-      icon: <Briefcase size={20} />,
-      title: "Business Leaders",
+      icon: <HelpingHandIcon size={20} />,
+      title: "Charities",
       description: "Executives and managers implementing AI strategies"
     },
     {
-      icon: <Users size={20} />,
-      title: "Industry Professionals",
+      icon: <FcOrganization size={20} />,
+      title: "NGOs",
       description: "Those working in AI-affected industries"
     },
     {
-      icon: <Globe size={20} />,
-      title: "Civil Society Organizations",
+      icon: <CgOrganisation size={20} />,
+      title: "Organisations",
       description: "NGOs and non-profits addressing AI impacts"
     },
     {
@@ -72,12 +74,12 @@ const AiCharity = () => {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <div className="inline-flex items-center justify-center gap-3 mb-4">
+        {/* <div className="inline-flex items-center justify-center gap-3 mb-4">
           <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-blue-400 rounded-full"></div>
           <span className="text-sm font-semibold tracking-wider text-blue-600 uppercase">
             Who is it For
           </span>
-        </div>
+        </div> */}
 
         <motion.h2 
           className="text-3xl md:text-4xl font-bold text-slate-800 mb-6"
@@ -89,7 +91,7 @@ const AiCharity = () => {
           AI Impacts Training for Charities and the Public Sector
         </motion.h2>
 
-        <motion.p 
+        {/* <motion.p 
           className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +101,8 @@ const AiCharity = () => {
           For charities, NGOs, public sector organisations, 
           and government employees who want to understand how Artificial Intelligence (AI) is shaping service delivery, 
           decision-making, and social outcomes.
-        </motion.p>
+        </motion.p> */}
+
       </motion.div>
 
       <div className="flex flex-col lg:flex-row gap-12 mt-10">
@@ -168,7 +171,7 @@ const AiCharity = () => {
             <div className="inline-flex items-center gap-3 mb-6">
               <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-blue-400 rounded-full"></div>
               <span className="text-sm font-semibold tracking-wider text-blue-600 uppercase">
-                Target Audience
+                Who is it for ?
               </span>
             </div>
 
