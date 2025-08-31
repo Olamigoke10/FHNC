@@ -77,7 +77,7 @@ const AiLearn = () => {
               </span>
             </span>
 
-            <span className="absolute top-24 text-xs py-1">
+            <span className="absolute top-24 text-xs py-1 left-0 right-0">
               {item.label}
             </span>
           </motion.button>

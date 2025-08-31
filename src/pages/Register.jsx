@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import RegisterPng from "../assets/images/Register.png";
 import EmailJpg from "../assets/images/emailing.jpg";
@@ -7,6 +7,50 @@ import { CheckCircle, Calendar, Upload, CreditCard } from "lucide-react";
 const Register = () => {
   const form = useRef();
   const [status, setStatus] = useState("");
+
+  const [courses, setCourses] = useState([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    course: "",
+    message: ""
+  });
+
+    useEffect(() => {
+    fetch("https://fhnc-backend.onrender.com/api/Register/courses/") // Your Django endpoint
+      .then((res) => res.json())
+      .then((data) => setCourses(data))
+      .catch((err) => console.error(err));
+  }, []);
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle registration submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch("https://fhnc-backend.onrender.com/api/Register/register/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => {
+        if (res.ok) {
+          setStatus("✅ Registration successful!");
+          setFormData({ name: "", email: "", course: "", message: "" });
+        } else {
+          setStatus("❌ Failed to register. Try again.");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setStatus("❌ Failed to register. Try again.");
+      });
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -172,72 +216,89 @@ const Register = () => {
       <div className="flex flex-col lg:flex-row gap-12 items-center">
         {/* Form */}
         <div className="lg:w-1/2 w-full">
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-10">
             <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-6">
               <h3 className="text-xl font-bold text-white">Contact Our Team</h3>
               <p className="text-blue-100">
                 Have questions? We're here to help.
               </p>
             </div>
-            <form ref={form} onSubmit={sendEmail} className="p-6 space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  name="from_name"
-                  required
-                  placeholder="Enter your name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                />
-              </div>
+             <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block mb-1 font-medium">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter your full name"
+          />
+        </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="reply_to"
-                  required
-                  placeholder="Enter your email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                />
-              </div>
+        <div>
+          <label className="block mb-1 font-medium">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter your email"
+          />
+        </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  rows="5"
-                  required
-                  placeholder="How can we help you?"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                ></textarea>
-              </div>
+        <div>
+          <label className="block mb-1 font-medium">Select Course</label>
+          <select
+            name="course"
+            value={formData.course}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Select a course</option>
+            {courses.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.title}
+              </option>
+            ))}
+          </select>
+        </div>
 
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
-              >
-                Send Message
-              </button>
+        <div>
+          <label className="block mb-1 font-medium">Message</label>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            rows="4"
+            placeholder="Optional message"
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
 
-              {status && (
-                <div
-                  className={`mt-4 p-3 rounded-lg text-sm font-medium text-center ${
-                    status.includes("success")
-                      ? "bg-green-100 text-green-800"
-                      : "bg-red-100 text-red-800"
-                  }`}
-                >
-                  {status}
-                </div>
-              )}
-            </form>
+        <button
+          type="submit"
+          className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
+        >
+          Register
+        </button>
+
+        {/* Status */}
+    {status && (
+    <div
+      className={`mt-4 p-3 rounded-lg text-sm font-medium text-center ${
+        status.includes("successful") ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+      }`}
+    >
+      {status}
+    </div>
+  )}
+
+      </form>
           </div>
         </div>
 
