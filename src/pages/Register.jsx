@@ -218,12 +218,12 @@ const Register = () => {
         <div className="lg:w-1/2 w-full">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-10">
             <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-6">
-              <h3 className="text-xl font-bold text-white">Contact Our Team</h3>
+              <h3 className="text-xl font-bold text-white">Register Here</h3>
               <p className="text-blue-100">
-                Have questions? We're here to help.
+                Quick, easy, and hassle-free registration
               </p>
             </div>
-             <form onSubmit={handleSubmit} className="space-y-4">
+             <form onSubmit={handleSubmit} className="space-y-4 mt-6">
         <div>
           <label className="block mb-1 font-medium">Full Name</label>
           <input
@@ -316,7 +316,7 @@ const Register = () => {
                   Need Immediate Assistance?
                 </h3>
                 <p className="text-blue-100">
-                  Call our support team at <a href="">780-804-0718</a>
+                  Call our support team at 780-804-0718
                 </p>
               </div>
             </div>
