@@ -87,7 +87,7 @@ const Navbar = () => {
                 }`
               }
             >
-              About Us
+              About Me
             </NavLink>
 
             {/* Training Programs Dropdown */}
