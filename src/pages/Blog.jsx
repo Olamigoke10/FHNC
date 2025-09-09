@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CalendarDays, Clock, User, ArrowRight, X } from 'lucide-react';
+import DOMPurify from 'dompurify';
 
 const API_URL = 'https://fhnc-backend.onrender.com/api/blogs/posts/';
 
@@ -19,7 +20,15 @@ const BlogsSection = () => {
           throw new Error('Failed to fetch blogs');
         }
         const data = await response.json();
-        setBlogs(data);
+        if (!Array.isArray(data)) {
+          throw new Error('Unexpected API response format');
+        }
+        // Ensure blog image URLs use HTTPS
+        const secureBlogs = data.map(blog => ({
+          ...blog,
+          image: blog.image ? blog.image.replace(/^http:/, 'https:') : 'https://via.placeholder.com/400x300',
+        }));
+        setBlogs(secureBlogs);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -31,27 +40,26 @@ const BlogsSection = () => {
   }, []);
 
   const openModal = (blog) => {
-    setSelectedBlog(blog);
+    setSelectedBlog({
+      ...blog,
+      image: blog.image ? blog.image.replace(/^http:/, 'https:') : 'https://via.placeholder.com/800x400',
+    });
     setIsModalOpen(true);
-    // Prevent body scrolling when modal is open
     document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedBlog(null);
-    // Re-enable body scrolling
     document.body.style.overflow = 'auto';
   };
 
-  // Close modal when clicking outside content
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       closeModal();
     }
   };
 
-  // Close modal with Escape key
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
@@ -99,7 +107,6 @@ const BlogsSection = () => {
   return (
     <>
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" id="blog">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center gap-3 mb-4">
             <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-blue-400 rounded-full"></div>
@@ -115,21 +122,18 @@ const BlogsSection = () => {
           </p>
         </div>
 
-        {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.map(blog => (
             <div key={blog.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              {/* Blog Image */}
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={blog.image || 'https://via.placeholder.com/400x300'} 
+                  src={blog.image} 
                   alt={blog.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent"></div>
               </div>
-
-              {/* Blog Content */}
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">
@@ -140,11 +144,8 @@ const BlogsSection = () => {
                     {new Date(blog.created_at).toLocaleDateString()}
                   </span>
                 </div>
-
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{blog.title}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-2">{blog.excerpt}</p>
-
-                {/* Read More Button */}
                 <button 
                   onClick={() => openModal(blog)}
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
@@ -157,7 +158,6 @@ const BlogsSection = () => {
           ))}
         </div>
 
-        {/* Empty State */}
         {blogs.length === 0 && (
           <div className="text-center py-12">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -169,14 +169,12 @@ const BlogsSection = () => {
         )}
       </section>
 
-      {/* Blog Post Modal Overlay */}
       {isModalOpen && selectedBlog && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 overflow-y-auto"
           onClick={handleBackdropClick}
         >
           <div className="relative bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            {/* Close Button */}
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 z-10 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
@@ -184,18 +182,15 @@ const BlogsSection = () => {
             >
               <X size={24} />
             </button>
-
-            {/* Blog Image */}
             <div className="relative h-64 md:h-80 overflow-hidden">
               <img 
-                src={selectedBlog.image || 'https://via.placeholder.com/800x400'} 
+                src={selectedBlog.image} 
                 alt={selectedBlog.title}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
             </div>
-
-            {/* Blog Content */}
             <div className="p-6 md:p-8">
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
@@ -206,21 +201,16 @@ const BlogsSection = () => {
                   {new Date(selectedBlog.created_at).toLocaleDateString()}
                 </span>
               </div>
-
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {selectedBlog.title}
               </h2>
-
-              {/* Blog Content */}
               <div className="prose max-w-none text-gray-700">
                 {selectedBlog.content ? (
-                  <div dangerouslySetInnerHTML={{ __html: selectedBlog.content }} />
+                  <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedBlog.content) }} />
                 ) : (
                   <p>No content available for this blog post.</p>
                 )}
               </div>
-
-              {/* Action Buttons */}
               <div className="mt-8 flex justify-end">
                 <button
                   onClick={closeModal}
