@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CalendarDays, Clock, User, ArrowRight, X } from 'lucide-react';
-import DOMPurify from 'dompurify';
+import { CalendarDays, Clock, User, ArrowRight, X, AlertCircle, Meh } from 'lucide-react';
 
 const API_URL = 'https://fhnc-backend.onrender.com/api/blogs/posts/';
 
@@ -20,15 +19,7 @@ const BlogsSection = () => {
           throw new Error('Failed to fetch blogs');
         }
         const data = await response.json();
-        if (!Array.isArray(data)) {
-          throw new Error('Unexpected API response format');
-        }
-        // Ensure blog image URLs use HTTPS
-        const secureBlogs = data.map(blog => ({
-          ...blog,
-          image: blog.image ? blog.image.replace(/^http:/, 'https:') : 'https://via.placeholder.com/400x300',
-        }));
-        setBlogs(secureBlogs);
+        setBlogs(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -40,10 +31,7 @@ const BlogsSection = () => {
   }, []);
 
   const openModal = (blog) => {
-    setSelectedBlog({
-      ...blog,
-      image: blog.image ? blog.image.replace(/^http:/, 'https:') : 'https://via.placeholder.com/800x400',
-    });
+    setSelectedBlog(blog);
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -91,9 +79,7 @@ const BlogsSection = () => {
 
   if (error) return (
     <div className="text-center py-16 text-red-500">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+      <AlertCircle className="h-12 w-12 mx-auto mb-4 text-red-500" />
       <p>Error loading blogs: {error}</p>
       <button 
         onClick={() => window.location.reload()} 
@@ -127,13 +113,13 @@ const BlogsSection = () => {
             <div key={blog.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={blog.image} 
+                  src={blog.image || 'https://via.placeholder.com/400x300'} 
                   alt={blog.title}
                   className="w-full h-full object-cover"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent"></div>
               </div>
+
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">
@@ -144,8 +130,10 @@ const BlogsSection = () => {
                     {new Date(blog.created_at).toLocaleDateString()}
                   </span>
                 </div>
+
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{blog.title}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-2">{blog.excerpt}</p>
+
                 <button 
                   onClick={() => openModal(blog)}
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
@@ -160,9 +148,7 @@ const BlogsSection = () => {
 
         {blogs.length === 0 && (
           <div className="text-center py-12">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <Meh className="h-16 w-16 mx-auto text-gray-400" />
             <h3 className="text-xl font-medium text-gray-700 mb-2">No blog posts yet</h3>
             <p className="text-gray-500">Check back later for updates</p>
           </div>
@@ -182,15 +168,16 @@ const BlogsSection = () => {
             >
               <X size={24} />
             </button>
+
             <div className="relative h-64 md:h-80 overflow-hidden">
               <img 
-                src={selectedBlog.image} 
+                src={selectedBlog.image || 'https://via.placeholder.com/800x400'} 
                 alt={selectedBlog.title}
                 className="w-full h-full object-cover"
-                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
             </div>
+
             <div className="p-6 md:p-8">
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
@@ -201,16 +188,19 @@ const BlogsSection = () => {
                   {new Date(selectedBlog.created_at).toLocaleDateString()}
                 </span>
               </div>
+
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {selectedBlog.title}
               </h2>
+
               <div className="prose max-w-none text-gray-700">
                 {selectedBlog.content ? (
-                  <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedBlog.content) }} />
+                  <div dangerouslySetInnerHTML={{ __html: selectedBlog.content }} />
                 ) : (
                   <p>No content available for this blog post.</p>
                 )}
               </div>
+
               <div className="mt-8 flex justify-end">
                 <button
                   onClick={closeModal}
