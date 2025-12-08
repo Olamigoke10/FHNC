@@ -1,5 +1,5 @@
 import { ChevronDown, Menu, X } from "lucide-react";
-import logo from "../assets/logos/fnhc.png";
+import logo from "../assets/logos/FnhcLogo.jpg";
 import { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -45,9 +45,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 w-14 md:w-16 shadow-md rounded-full overflow-hidden">
             <NavLink to="/" className="flex items-center">
-              <img src={logo} alt="Logo" className="w-60 md:w-72 font-extrabold" />
+              <img src={logo} alt="Logo" className=" rounded-full font-extrabold" />
             </NavLink>
           </div>
 

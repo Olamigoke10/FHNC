@@ -10,53 +10,44 @@ import ContactUs from './pages/ContactUs';
 import Blog from './pages/Blog';
 import AiEthics from './pages/minicomponents/AiEthics';
 import NotFound from './pages/NotFound';
-import Preloader from './pages/Preloader' // Import the Preloader component
+import Preloader from './pages/Preloader';
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import Footer from './pages/Footer';
 import DriverTraining from './pages/minicomponents/DriverTraining';
 import Leadership from './pages/Leadership';
+import { Fab, Webchat } from '@botpress/webchat';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isWebchatOpen, setIsWebchatOpen] = useState(false);
+
+  const toggleWebchat = () => setIsWebchatOpen(prev => !prev);
 
   useEffect(() => {
-    // Initialize AOS animation library
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
+    AOS.init({ duration: 1000, once: true });
 
-    // Simulate loading of critical assets
     const loadAssets = async () => {
       try {
-        // You can add actual asset loading here if needed
-        // For example: await loadFonts(), await loadImages(), etc.
-        
-        // Minimum show time for the preloader (2 seconds)
         await new Promise(resolve => setTimeout(resolve, 2000));
       } catch (error) {
         console.error("Error loading assets:", error);
       } finally {
         setIsLoading(false);
-        document.body.style.overflow = 'auto'; 
       }
     };
 
     loadAssets();
-
-    return () => {
-      // Cleanup if component unmounts
-      document.body.style.overflow = 'auto';
-    };
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isLoading ? 'hidden' : 'auto';
+  }, [isLoading]);
 
   return (
     <div className={`flex flex-col min-h-screen ${isLoading ? 'overflow-hidden h-screen' : ''}`}>
-      {/* Show preloader while loading */}
       {isLoading && <Preloader />}
-      
-      {/* Main app content */}
+
       <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
         <Navbar />
         <Routes>
@@ -64,7 +55,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/leadership" element={<Leadership />} />
-          {/* <Route path="/partnership" element={<Partnership />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/blog" element={<Blog />} />
@@ -73,6 +63,28 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
+
+        <Webchat
+          clientId={import.meta.env.VITE_BOTPRESS_CLIENT_ID}
+          style={{
+            width: '400px',
+            height: '400px',
+            display: isWebchatOpen ? 'flex' : 'none',
+            position: 'fixed',
+            bottom: '90px',
+            right: '20px',
+          }}
+        />
+        <Fab
+          onClick={toggleWebchat}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            width: '64px',
+            height: '64px',
+          }}
+        />
       </div>
     </div>
   );
