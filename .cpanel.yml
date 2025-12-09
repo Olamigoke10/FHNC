@@ -1,0 +1,13 @@
+deployment:
+  tasks:
+    # 1. Define the live folder path (Use your actual path: /home/cf5k62pwejrb/public_html/)
+    - export DEPLOYPATH=/home/cf5k62pwejrb/public_html/
+    
+    # 2. Delete ALL existing files and folders in public_html
+    # This prevents old, obsolete files from remaining on the server.
+    - /bin/rm -rf $DEPLOYPATH/*
+    - /bin/rm -rf $DEPLOYPATH/.*
+    
+    # 3. Copy the *CONTENTS* of the 'dist' folder to the live site root.
+    # This copies index.html, assets/, and all other built files directly into public_html.
+    - /bin/cp -R dist/. $DEPLOYPATH
