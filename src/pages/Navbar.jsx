@@ -1,5 +1,5 @@
 import { ChevronDown, Menu, X } from "lucide-react";
-import logo from "../assets/logos/FirstLogo.jpg";
+import logo from "../assets/logos/FirstLogo1.png";
 import { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
