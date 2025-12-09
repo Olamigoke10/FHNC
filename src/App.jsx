@@ -16,13 +16,9 @@ import "aos/dist/aos.css";
 import Footer from './pages/Footer';
 import DriverTraining from './pages/minicomponents/DriverTraining';
 import Leadership from './pages/Leadership';
-import { Fab, Webchat } from '@botpress/webchat';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isWebchatOpen, setIsWebchatOpen] = useState(false);
-
-  const toggleWebchat = () => setIsWebchatOpen(prev => !prev);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -63,28 +59,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
-
-        <Webchat
-          clientId={import.meta.env.VITE_BOTPRESS_CLIENT_ID}
-          style={{
-            width: '400px',
-            height: '400px',
-            display: isWebchatOpen ? 'flex' : 'none',
-            position: 'fixed',
-            bottom: '90px',
-            right: '20px',
-          }}
-        />
-        <Fab
-          onClick={toggleWebchat}
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            width: '64px',
-            height: '64px',
-          }}
-        />
       </div>
     </div>
   );
